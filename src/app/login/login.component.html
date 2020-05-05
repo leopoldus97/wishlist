@@ -1,8 +1,8 @@
 <div class="login">
   <div class="vertical-center">
     <h1>Login</h1>
-    <input type="text" name="u" placeholder="Username" required="required" />
-    <input type="password" name="p" placeholder="Password" required="required" />
-    <button type="submit" class="btn">Let me in.</button>
+    <input type="text" name="e" placeholder="Email" required="required" [(ngModel)]="email"/>
+    <input type="password" name="p" placeholder="Password" required="required" [(ngModel)]="password"/>
+    <button type="submit" class="btn" (click)="login()">Let me in.</button>
   </div>
 </div>
