@@ -10,7 +10,8 @@ import {User} from '../models/user';
   providedIn: 'root'
 })
 export class AuthService {
-  userData: Observable<firebase.User>;
+  userData: Observable<User>;
+  userID: string;
 
   constructor(
     private afa: AngularFireAuth,
@@ -41,6 +42,7 @@ export class AuthService {
   SignIn(email: string, password: string) {
     const u = this.afa.auth.signInWithEmailAndPassword(email, password).then(res => {
       console.log('You are succesfully logged in!');
+      this.userID = res.user.uid;
       this.router.navigate(['home']);
       this.UpdateUserData(res.user);
     }).catch(err => {
@@ -50,6 +52,7 @@ export class AuthService {
 
   SignOut() {
     this.afa.auth.signOut().then(res => {
+      this.userID = null;
       console.log('You are successfully signed out!', res);
       this.router.navigate(['']);
     }).catch(err => {

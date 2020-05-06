@@ -1,2 +1,7 @@
 <p>home works!</p>
 <pre>{{authServ.userData | async | json}}</pre>
+<pre>{{wishlist | async | json}}</pre>
+<div class="form-group">
+  <input type="file" id="file" (change)="selectProfileImage($event)" accept="images/*">
+</div>
+<button (click)="logout()">Logout</button>
