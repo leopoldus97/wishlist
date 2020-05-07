@@ -15,6 +15,7 @@ import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {WishlistState} from './shared/states/wishlist.state';
 import {AppRoutingModule} from './app-routing.module';
+import {UserState} from './shared/states/user.state';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {AppRoutingModule} from './app-routing.module';
     AngularFireAuthModule,
     AngularFireStorageModule,
     FormsModule,
-    NgxsModule.forRoot([WishlistState]),
+    NgxsModule.forRoot([WishlistState, UserState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot()
   ],

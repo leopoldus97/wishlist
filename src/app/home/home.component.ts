@@ -5,6 +5,8 @@ import {Observable} from 'rxjs';
 import {Wishlist} from '../shared/models/wishlist';
 import {Select, Store} from '@ngxs/store';
 import {GetWishlist} from '../shared/actions/wishlist.action';
+import {UserState} from '../shared/states/user.state';
+import {User} from '../shared/models/user';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +16,7 @@ import {GetWishlist} from '../shared/actions/wishlist.action';
 export class HomeComponent implements OnInit {
 
   @Select(WishlistState.getWishlist) wishlist: Observable<Wishlist>;
+  @Select(UserState.currentUser) user: Observable<User>;
   profileImage: File = null;
 
   constructor(
