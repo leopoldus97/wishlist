@@ -11,7 +11,6 @@ import {User} from '../models/user';
 })
 export class AuthService {
   userData: Observable<User>;
-  userID: string;
 
   constructor(
     private afa: AngularFireAuth,
@@ -42,7 +41,7 @@ export class AuthService {
   SignIn(email: string, password: string) {
     const u = this.afa.auth.signInWithEmailAndPassword(email, password).then(res => {
       console.log('You are succesfully logged in!');
-      this.userID = res.user.uid;
+      localStorage.setItem('id', res.user.uid);
       this.router.navigate(['home']);
       this.UpdateUserData(res.user);
     }).catch(err => {
@@ -52,7 +51,7 @@ export class AuthService {
 
   SignOut() {
     this.afa.auth.signOut().then(res => {
-      this.userID = null;
+      localStorage.removeItem('id');
       console.log('You are successfully signed out!', res);
       this.router.navigate(['']);
     }).catch(err => {
@@ -74,5 +73,9 @@ export class AuthService {
     return userRef.set(data, {merge: true}).catch(err => {
       console.log('Update user data failed: ', err);
     });
+  }
+
+  getUserID(): string {
+    return localStorage.getItem('id');
   }
 }

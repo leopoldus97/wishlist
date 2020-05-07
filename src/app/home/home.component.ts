@@ -5,7 +5,6 @@ import {Observable} from 'rxjs';
 import {Wishlist} from '../shared/models/wishlist';
 import {Select, Store} from '@ngxs/store';
 import {GetWishlist} from '../shared/actions/wishlist.action';
-import {User} from '../shared/models/user';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +22,8 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.dispatch(new GetWishlist(this.authServ.userID));
+    console.log('ID home: ' + this.authServ.getUserID());
+    this.store.dispatch(new GetWishlist(this.authServ.getUserID()));
   }
 
   selectProfileImage(event) {
