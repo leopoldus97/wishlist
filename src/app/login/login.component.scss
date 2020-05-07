@@ -1,20 +1,20 @@
 .login{
   width: 200px;
   margin: auto;
+  color: #FCF6F5FF;
 }
 
 .vertical-center {
   width: 200px;
   margin: 0;
-  position: absolute;
+  position: fixed;
   top: 20%;
-}
-
-input {
-  width: 200px;
-  border-width: 2px;
+  // border: #2BAE66 solid thin;
+  // border-radius: 25%;
 }
 
 button {
-  width: 204px;
+  width: 180px;
+  background-color: #58427C;
+  color: #FCF6F5FF;
 }

@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button class="button-color" mat-mini-fab aria-label="home" routerLink="/home">
+      <mat-icon>home</mat-icon>
+    </button>
+    <span class="bar-spacer"></span>
+    <span class="text-color">Wishlist</span>
+    <span class="bar-spacer"></span>
+    <button class="button-color" *ngIf="(auth.userData | async)" (click)="logout()" mat-flat-button aria-label="Sign-out">
+      <mat-icon>lock_open</mat-icon> Logout
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

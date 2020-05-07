@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {User} from '../models/user';
+import {FormBuilder} from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,8 @@ export class AuthService {
   constructor(
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.userData = afa.authState.pipe(
       switchMap(user => {
@@ -46,6 +49,7 @@ export class AuthService {
       this.UpdateUserData(res.user);
     }).catch(err => {
       console.log('Something is wrong:', err.message);
+      this.snackBar.open(err.message);
     });
   }
 
