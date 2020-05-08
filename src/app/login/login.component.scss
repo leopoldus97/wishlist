@@ -1,20 +1,37 @@
-.login{
-  width: 200px;
-  margin: auto;
-  color: #FCF6F5FF;
-}
-
-.vertical-center {
-  width: 200px;
-  margin: 0;
-  position: fixed;
-  top: 20%;
-  // border: #2BAE66 solid thin;
-  // border-radius: 25%;
-}
-
 button {
-  width: 180px;
+  width: 15em;
   background-color: #58427C;
   color: #FCF6F5FF;
+  font-size: 100%;
+}
+
+.vertical-separator {
+  margin-top: 3em;
+}
+
+.separator {
+  margin-bottom: 1em;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+mat-card {
+  top: 10em;
+  max-width: 30em;
+  height: 20em;
+  margin: 2em auto;
+  padding: 4em;
+  text-align: center;
+  background-color: #2BAE66;
+  border-radius: 25%;
+  color: #FCF6F5FF;
+}
+
+mat-form-field {
+  display: block;
+  font-size: 1em;
+  width: 80%;
+  margin: auto;
 }

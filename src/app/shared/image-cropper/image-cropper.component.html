@@ -1,0 +1,17 @@
+<div mat-dialog-content>
+  <image-cropper
+    style="max-width: 512px; max-height: 512px"
+    [aspectRatio]="1 / 1"
+    [roundCropper]="true"
+    [onlyScaleDown]="true"
+    [resizeToWidth]="128"
+    [resizeToHeight]="128"
+    [imageFile]="image"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+  ></image-cropper>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="croppedImage">Ok</button>
+</div>

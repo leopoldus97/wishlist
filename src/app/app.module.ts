@@ -25,13 +25,20 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
+import {ImageCropperModule} from 'ngx-image-cropper';
+import { ProfileComponent } from './profile/profile.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ProfileComponent,
+    ImageCropperComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,10 @@ import {MatCardModule} from '@angular/material/card';
     MatRippleModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    ImageCropperModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}}

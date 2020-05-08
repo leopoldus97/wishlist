@@ -1,28 +1,26 @@
-<div class="login">
-  <div class="vertical-center">
-    <h1>Login</h1>
-    <form [formGroup]="loginValidatorForm" (ngSubmit)="login()">
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
-        <mat-error *ngIf="loginValidatorForm.hasError('email') && !loginValidatorForm.hasError('required')">
-          Please enter a valid email address
-        </mat-error>
-        <mat-error *ngIf="loginValidatorForm.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput formControlName="password" type="password" [errorStateMatcher]="matcher" placeholder="Ex. ******">
-        <mat-error *ngIf="loginValidatorForm.hasError('min') && !loginValidatorForm.hasError('required')">
-          Passwords should be at least 6 characters long
-        </mat-error>
-        <mat-error *ngIf="loginValidatorForm.hasError('required')">
-          Password is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-        <button mat-raised-button type="submit">Let me in.</button>
-    </form>
-  </div>
-</div>
+<mat-card>
+  <h1 class="vertical-separator">Login</h1>
+  <form class="vertical-separator" [formGroup]="loginValidatorForm" (ngSubmit)="login()" >
+    <mat-form-field appearance="fill" class="separator">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="loginValidatorForm.hasError('email') && !loginValidatorForm.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="loginValidatorForm.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="separator">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" [errorStateMatcher]="matcher" placeholder="Ex. ******">
+      <mat-error *ngIf="loginValidatorForm.hasError('min') && !loginValidatorForm.hasError('required')">
+        Passwords should be at least 6 characters long
+      </mat-error>
+      <mat-error *ngIf="loginValidatorForm.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Let me in.</button>
+  </form>
+</mat-card>

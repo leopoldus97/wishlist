@@ -4,8 +4,7 @@ import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestor
 import {Router} from '@angular/router';
 import {Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
-import {User} from '../models/user';
-import {FormBuilder} from '@angular/forms';
+import {User} from '../../models/user';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
@@ -66,7 +65,7 @@ export class AuthService {
   UpdateUserData(user) {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
-    const data = {
+    const data: User = {
       uid: user.uid,
       email: user.email,
       firstname: user.firstname,

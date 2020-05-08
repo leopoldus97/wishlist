@@ -1,0 +1,16 @@
+<input hidden type="file" (change)="selectProfileImage($event)" #fileInput>
+
+
+<div class="image-container">
+  <img *ngIf="croppedImage" [src]="croppedImage" class="profile-image">
+  <img *ngIf="!croppedImage" src="../../assets/defaultUserIcon.png" class="profile-image"/>
+  <div class="overlay" fxLayoutAlign="center center" (click)="this.fileInput.click()">
+    <mat-icon style="alignment: center; color: #58427C">add</mat-icon>
+  </div>
+</div>
+
+<!---<mat-form-field hintLabel="Max 10 characters" appearance="fill">
+  <mat-label>Enter some input</mat-label>
+  <input matInput #input minlength="6" placeholder="Ex. Nougat">
+  <mat-hint align="end">{{6 - input.value?.length || 6}}/6</mat-hint>
+</mat-form-field>--->
