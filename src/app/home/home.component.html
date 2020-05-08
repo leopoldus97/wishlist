@@ -1,7 +1,22 @@
-<p>home works!</p>
-<pre>{{authServ.userData | async | json}}</pre>
-<pre>{{wishlist | async | json}}</pre>
-<div class="form-group">
-  <input type="file" id="file" (change)="selectProfileImage($event)" accept="images/*">
-</div>
-<button (click)="logout()">Logout</button>
+<h1 class="welcome">
+  Welcome {{user.firstname}}!
+</h1>
+
+<body>
+
+<h2>Your wishes:</h2>
+  <div *ngFor="let wish of w.wishes">
+    <mat-card>
+      <mat-card-title>{{wish.name}}</mat-card-title>
+      <mat-card-content *ngIf="wish.description.toString().length > 0">{{wish.description}}</mat-card-content>
+      <mat-card-actions>
+        <a href="{{wish.url}}" target="_blank">{{wish.url}}</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+
+  <div *ngIf="false" class="form-group">
+    <input type="file" id="file" (change)="selectProfileImage($event)" accept="images/*">
+  </div>
+</body>

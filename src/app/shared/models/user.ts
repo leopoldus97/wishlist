@@ -1,9 +1,9 @@
 export interface User {
   uid: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  nickName?: string;
+  firstname: string;
+  lastname: string;
+  nickname?: string;
   familyUid?: string;
   photoUrl?: string;
 }

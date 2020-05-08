@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {Wishlist} from '../shared/models/wishlist';
 import {Select, Store} from '@ngxs/store';
 import {GetWishlist} from '../shared/actions/wishlist.action';
+import {User} from '../shared/models/user';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,8 @@ import {GetWishlist} from '../shared/actions/wishlist.action';
 export class HomeComponent implements OnInit {
 
   @Select(WishlistState.getWishlist) wishlist: Observable<Wishlist>;
+  user: User;
+  w: Wishlist;
   profileImage: File = null;
 
   constructor(
@@ -22,8 +25,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('ID home: ' + this.authServ.getUserID());
     this.store.dispatch(new GetWishlist(this.authServ.getUserID()));
+    this.authServ.userData.subscribe(data => this.user = data);
+    this.wishlist.subscribe(data => this.w = data);
   }
 
   selectProfileImage(event) {
@@ -34,9 +38,5 @@ export class HomeComponent implements OnInit {
     else {
       console.log('need an image');
     }
-  }
-
-  logout() {
-    this.authServ.SignOut();
   }
 }

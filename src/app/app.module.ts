@@ -24,6 +24,7 @@ import {MatRippleModule} from '@angular/material/core';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatSnackBarModule,
     MatRippleModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}}
