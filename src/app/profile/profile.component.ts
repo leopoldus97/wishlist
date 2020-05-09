@@ -11,6 +11,7 @@ import {ImageCropperComponent} from '../shared/image-cropper/image-cropper.compo
 })
 export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
   croppedImage: any = '';
+  picPath: string;
 
   constructor(
     private snackBar: MatSnackBar,

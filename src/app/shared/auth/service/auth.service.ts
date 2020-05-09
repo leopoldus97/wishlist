@@ -59,6 +59,7 @@ export class AuthService {
       this.router.navigate(['']);
     }).catch(err => {
       console.log('Something is wrong:', err.message);
+      this.snackBar.open(err.message);
     });
   }
 
@@ -75,6 +76,7 @@ export class AuthService {
 
     return userRef.set(data, {merge: true}).catch(err => {
       console.log('Update user data failed: ', err);
+      this.snackBar.open(err.message);
     });
   }
 

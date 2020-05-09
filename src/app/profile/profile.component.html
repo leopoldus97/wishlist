@@ -1,11 +1,12 @@
 <input hidden type="file" (change)="selectProfileImage($event)" #fileInput>
 
-
 <div class="image-container">
-  <img *ngIf="croppedImage" [src]="croppedImage" class="profile-image">
-  <img *ngIf="!croppedImage" src="../../assets/defaultUserIcon.png" class="profile-image"/>
+  <img hidden [src]="picPath" class="profile-image">
+  <object [data]="picPath" type="image/png" class="profile-image">
+    <img src="../../assets/defaultUserIcon.png" class="profile-image"/>
+  </object>
   <div class="overlay" fxLayoutAlign="center center" (click)="this.fileInput.click()">
-    <mat-icon style="alignment: center; color: #58427C">add</mat-icon>
+    <mat-icon>add</mat-icon>
   </div>
 </div>
 

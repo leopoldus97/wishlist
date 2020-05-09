@@ -2,11 +2,19 @@ button {
   background-color: #58427C;
 }
 
+mat-icon {
+  alignment: center;
+  color: #58427C;
+  font-size: 9.2em;
+}
+
 .profile-image {
   width: 128px;
   height: 128px;
   border-radius: 100%;
   border: #2BAE66 groove thin;
+  background-image: url("src/assets/defaultUserIcon.png");
+  background-size: 128px 128px;
 }
 
 .image-container {
@@ -17,6 +25,7 @@ button {
 
 .image-container:hover .overlay {
   opacity: 0.7;
+  cursor: pointer;
 }
 
 .overlay {

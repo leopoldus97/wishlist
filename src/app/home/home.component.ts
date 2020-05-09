@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../shared/auth/service/auth.service';
 import {WishlistState} from '../shared/states/wishlist.state';
 import {Observable} from 'rxjs';
@@ -15,7 +15,7 @@ import {ImageCroppedEvent} from 'ngx-image-cropper';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Select(WishlistState.getWishlist) wishlist: Observable<Wishlist>;
   user: User;
@@ -35,18 +35,15 @@ export class HomeComponent implements OnInit {
     this.authServ.userData.subscribe(data => this.user = data);
     this.wishlist.subscribe(data => this.w = data);
   }
-
   test() {
     console.log('Test worked');
   }
 
-  selectProfileImage(event) {
-    if (event.target.files[0].type.includes('image')) {
-      this.profileImage = event.target.files[0];
-      console.log('found an image');
-    }
-    else {
-      console.log('need an image');
-    }
+  ngAfterViewInit() {
+    document.querySelector('body').classList.add('login');
+  }
+
+  ngOnDestroy() {
+    document.querySelector('body').classList.remove('login');
   }
 }

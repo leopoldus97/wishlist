@@ -3,8 +3,8 @@
 </h1>
 
 <body>
-
   <h2>Your wishes:</h2>
+  <div *ngIf="w">
   <div *ngFor="let wish of w.wishes">
     <mat-card class="wish-card">
       <mat-card-title>{{wish.name}}</mat-card-title>
@@ -13,15 +13,14 @@
         <a href="{{wish.url}}" target="_blank">{{wish.url}}</a>
       </mat-card-actions>
     </mat-card>
+    </div>
+  </div>
+  <div *ngIf="!w">
+    <h1>You don't have any wish yet.</h1>
   </div>
   <div class="edit-bar row">
     <mat-card (click)="test()" id="add-wish-card">
       <mat-card-title>+</mat-card-title>
     </mat-card>
-  </div>
-
-
-  <div *ngIf="false" class="form-group">
-    <input type="file" id="file" (change)="selectProfileImage($event)" accept="images/*">
   </div>
 </body>
