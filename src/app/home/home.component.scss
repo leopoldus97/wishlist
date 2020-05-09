@@ -12,10 +12,21 @@ a:link, a:visited {
   color: white;
 }
 
-mat-card {
+.wish-card {
   background-color: #2BAE66;
   width: 80%;
   max-width: 1000px;
   margin: 30px auto;
 }
+
+.edit-bar {
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+}
+
+#add-wish-card {
+  width: 50px;
+}
+
 
