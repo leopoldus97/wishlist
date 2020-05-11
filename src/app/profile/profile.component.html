@@ -1,12 +1,15 @@
 <input hidden type="file" (change)="selectProfileImage($event)" #fileInput>
 
-<div class="image-container">
-  <img hidden [src]="picPath" class="profile-image">
-  <object [data]="picPath" type="image/png" class="profile-image">
-    <img src="../../assets/defaultUserIcon.png" class="profile-image"/>
-  </object>
-  <div class="overlay" fxLayoutAlign="center center" (click)="this.fileInput.click()">
-    <mat-icon>add</mat-icon>
+<div *ngIf="user | async as u">
+  <div class="image-container">
+    <img *ngIf="u.pictureURL" [src]="u.pictureURL" class="profile-image">
+    <img *ngIf="!u.pictureURL" src="../../assets/defaultUserIcon.png" class="profile-image"/>
+    <div class="overlay" fxLayoutAlign="center center" (click)="this.fileInput.click()">
+      <mat-icon>add</mat-icon>
+    </div>
+  </div>
+  <div class="profile-name">
+    <h1>{{u.firstname + ' ' + u.lastname}}</h1>
   </div>
 </div>
 

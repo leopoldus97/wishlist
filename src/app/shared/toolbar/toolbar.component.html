@@ -6,9 +6,10 @@
     <span class="bar-spacer"></span>
     <span class="text-color">Wishlist</span>
     <span class="bar-spacer"></span>
-    <button mat-mini-fab aria-label="profile" routerLink="/profile">
-      <mat-icon>person</mat-icon>
-    </button>
+    <div routerLink="/profile" *ngIf="(auth.userData | async)">
+      <img *ngIf="picURL" [src]="picURL" class="profile-image">
+      <img *ngIf="!picURL" src="../../../assets/defaultUserIcon.png" class="profile-image"/>
+    </div>
     <button class="button-color" *ngIf="(auth.userData | async)" (click)="logout()" mat-flat-button aria-label="Sign-out">
       <mat-icon>lock_open</mat-icon> Logout
     </button>

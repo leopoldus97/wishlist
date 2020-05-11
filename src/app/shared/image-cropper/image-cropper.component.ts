@@ -8,13 +8,14 @@ import {ImageCroppedEvent} from 'ngx-image-cropper';
   styleUrls: ['./image-cropper.component.scss']
 })
 export class ImageCropperComponent {
-  image: File = null;
+  imageChangedEvent: any = '';
   croppedImage: any = '';
+  showCropper = false;
 
   constructor(
     public dialogRef: MatDialogRef<ImageCropperComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.image = data;
+    this.imageChangedEvent = data;
   }
 
   onCancel() {
@@ -23,5 +24,10 @@ export class ImageCropperComponent {
 
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = event.base64;
+  }
+
+  imageLoaded() {
+    this.showCropper = true;
+    console.log('Image loaded');
   }
 }

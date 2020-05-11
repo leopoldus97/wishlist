@@ -1,15 +1,20 @@
 <div mat-dialog-content>
   <image-cropper
-    style="max-width: 512px; max-height: 512px"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
     [aspectRatio]="1 / 1"
     [roundCropper]="true"
-    [onlyScaleDown]="true"
     [resizeToWidth]="128"
-    [resizeToHeight]="128"
-    [imageFile]="image"
+    [cropperMinWidth]="512"
+    [onlyScaleDown]="true"
+    [containWithinAspectRatio]="false"
+    [style.display]="showCropper ? null : 'none'"
     format="png"
     (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded()"
   ></image-cropper>
+
+  <img hidden [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" style="border-radius: 100%;"/>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>

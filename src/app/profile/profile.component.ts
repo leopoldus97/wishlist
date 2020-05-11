@@ -1,8 +1,11 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {ImageCroppedEvent, ImageCropperModule} from 'ngx-image-cropper';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {ImageCropperComponent} from '../shared/image-cropper/image-cropper.component';
+import {FileService} from '../shared/services/file.service';
+import {Observable} from 'rxjs';
+import {User} from '../shared/models/user';
+import {UserService} from '../shared/services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,34 +13,29 @@ import {ImageCropperComponent} from '../shared/image-cropper/image-cropper.compo
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
-  croppedImage: any = '';
-  picPath: string;
+
+  public user: Observable<User>;
+  pic: any = '';
 
   constructor(
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private fs: FileService,
+    private us: UserService
   ) { }
 
   ngOnInit(): void {
+    this.getCurrentUser();
   }
-/*
-  selectProfileImage(event: any) {
-    this.imageChangedEvent = event;
-    if (event.target.files && event.target.files[0] && event.target.files[0].type.includes('image')) {
-      const reader = new FileReader();
-      reader.onload = (event: any) => {
-        this.picURL = event.target.result;
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    } else {
-      this.snackBar.open('Need an image file!');
-    }
+
+  getCurrentUser() {
+    const userID = localStorage.getItem('id');
+    this.user = this.us.readUserWithPic(userID);
   }
- */
 
   selectProfileImage(event) {
     if (event.target.files && event.target.files[0] && event.target.files[0].type.includes('image')) {
-      this.openDialog(event.target.files[0]);
+      this.openDialog(event);
     } else {
       this.snackBar.open('Need an image file!');
     }
@@ -53,14 +51,17 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openDialog(event): void {
     const dialogRef = this.dialog.open(ImageCropperComponent, {
-      width: 'auto',
       height: 'auto',
+      width: 'auto',
       data: event
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.croppedImage = result;
+      console.log('Dialog closed.');
+      this.pic = result;
+      this.fs.uploadPicture(result).then(a => {
+        this.getCurrentUser();
+      });
     });
   }
 

@@ -14,3 +14,18 @@ mat-toolbar {
   background-color: #58427C;
   color: #FCF6F5FF;
 }
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: #2BAE66 groove thin;
+  background-size: 40px 40px;
+  margin-right: 5px;
+  margin-top: 10px;
+  margin-bottom: auto;
+}
+
+.profile-image:hover {
+  cursor: pointer;
+}
