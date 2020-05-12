@@ -2,8 +2,8 @@
 
 <div *ngIf="user | async as u">
   <div class="image-container">
-    <img *ngIf="u.pictureURL" [src]="u.pictureURL" class="profile-image">
-    <img *ngIf="!u.pictureURL" src="../../assets/defaultUserIcon.png" class="profile-image"/>
+    <img *ngIf="profilePic | async" [src]="profilePic | async" class="profile-image" id="profileImage">
+    <img *ngIf="!(profilePic | async)" src="../../assets/defaultUserIcon.png" class="profile-image"/>
     <div class="overlay" fxLayoutAlign="center center" (click)="this.fileInput.click()">
       <mat-icon>add</mat-icon>
     </div>

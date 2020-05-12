@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage';
 import {Observable, of} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
@@ -62,8 +62,7 @@ export class FileService {
       byteArrays.push(byteArray);
     }
 
-    const blob = new Blob(byteArrays, {type: contentType});
-    return blob;
+    return new Blob(byteArrays, {type: contentType});
   }
 
   getDownloadURL(path: string): Observable<any> {

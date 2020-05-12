@@ -3,6 +3,8 @@ import {AuthService} from '../shared/auth/service/auth.service';
 import {FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {Router} from '@angular/router';
+import {Store} from '@ngxs/store';
+import {GetUser} from '../shared/actions/user.action';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -35,7 +37,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private authServ: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +52,9 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   login(){
-    this.authServ.SignIn(this.f().email.value, this.f().password.value);
+    this.authServ.SignIn(this.f().email.value, this.f().password.value).then((a) => {
+      this.store.dispatch(new GetUser(localStorage.getItem('id')));
+    });
   }
 
   ngAfterViewInit() {

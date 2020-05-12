@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../auth/service/auth.service';
-import {UserService} from '../services/user.service';
+import {Select} from '@ngxs/store';
+import {Observable} from 'rxjs';
+import {UserState} from '../states/user.state';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,17 +11,13 @@ import {UserService} from '../services/user.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  public picURL: string;
+  @Select(UserState.getProfilePic) profilePic: Observable<string>;
 
-  constructor(public auth: AuthService, public us: UserService) { }
+  constructor(public auth: AuthService) { }
 
-  ngOnInit(): void {
-    const id = localStorage.getItem('id');
-    this.us.readUserWithPic(id).subscribe(u => this.picURL = u.pictureURL);
-  }
+  ngOnInit(): void { }
 
   logout() {
-    this.picURL = null;
     this.auth.SignOut();
   }
 

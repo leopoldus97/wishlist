@@ -7,8 +7,8 @@
     <span class="text-color">Wishlist</span>
     <span class="bar-spacer"></span>
     <div routerLink="/profile" *ngIf="(auth.userData | async)">
-      <img *ngIf="picURL" [src]="picURL" class="profile-image">
-      <img *ngIf="!picURL" src="../../../assets/defaultUserIcon.png" class="profile-image"/>
+      <img *ngIf="profilePic | async" [src]="profilePic | async" class="profile-image">
+      <img *ngIf="!(profilePic | async)" src="../../../assets/defaultUserIcon.png" class="profile-image"/>
     </div>
     <button class="button-color" *ngIf="(auth.userData | async)" (click)="logout()" mat-flat-button aria-label="Sign-out">
       <mat-icon>lock_open</mat-icon> Logout

@@ -31,6 +31,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CreateComponent } from './create/create.component';
+import {UserState} from './shared/states/user.state';
 import { AwayComponent } from './away/away.component';
 
 @NgModule({
@@ -52,7 +53,7 @@ import { AwayComponent } from './away/away.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     FormsModule,
-    NgxsModule.forRoot([WishlistState]),
+    NgxsModule.forRoot([WishlistState, UserState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     BrowserAnimationsModule,

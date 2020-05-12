@@ -50,6 +50,7 @@ export class AuthService {
       console.log('Something is wrong:', err.message);
       this.snackBar.open(err.message);
     });
+    return u;
   }
 
   SignOut() {

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {FileService} from './file.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {User} from '../models/user';
-import {Observable, of} from 'rxjs';
-import {map, switchMap, tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

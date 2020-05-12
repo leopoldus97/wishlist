@@ -2,10 +2,12 @@ import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {ImageCropperComponent} from '../shared/image-cropper/image-cropper.component';
-import {FileService} from '../shared/services/file.service';
 import {Observable} from 'rxjs';
 import {User} from '../shared/models/user';
-import {UserService} from '../shared/services/user.service';
+import {Select, Store} from '@ngxs/store';
+import {UserState} from '../shared/states/user.state';
+import {GetUser} from '../shared/actions/user.action';
+import {FileService} from '../shared/services/file.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,24 +16,21 @@ import {UserService} from '../shared/services/user.service';
 })
 export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  public user: Observable<User>;
-  pic: any = '';
+  @Select(UserState.getUser) user: Observable<User>;
+  @Select(UserState.getProfilePic) profilePic: Observable<string>;
 
   constructor(
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private fs: FileService,
-    private us: UserService
+    private store: Store
   ) { }
 
   ngOnInit(): void {
     this.getCurrentUser();
   }
 
-  getCurrentUser() {
-    const userID = localStorage.getItem('id');
-    this.user = this.us.readUserWithPic(userID);
-  }
+  getCurrentUser() { }
 
   selectProfileImage(event) {
     if (event.target.files && event.target.files[0] && event.target.files[0].type.includes('image')) {
@@ -58,9 +57,9 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed.');
-      this.pic = result;
-      this.fs.uploadPicture(result).then(a => {
-        this.getCurrentUser();
+      const userID = localStorage.getItem('id');
+      this.fs.uploadPicture(result).then(() => {
+        this.store.dispatch(new GetUser(userID));
       });
     });
   }
