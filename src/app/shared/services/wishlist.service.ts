@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Wishlist} from '../models/wishlist';
 import {Observable} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

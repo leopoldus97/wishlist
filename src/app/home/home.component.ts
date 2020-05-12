@@ -4,11 +4,11 @@ import {WishlistState} from '../shared/states/wishlist.state';
 import {Observable} from 'rxjs';
 import {Wishlist} from '../shared/models/wishlist';
 import {Select, Store} from '@ngxs/store';
-import {GetWishlist} from '../shared/actions/wishlist.action';
+import {CreateWishlist, GetWishlist, UpdateWishlist} from '../shared/actions/wishlist.action';
 import {User} from '../shared/models/user';
 import {Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {ImageCroppedEvent} from 'ngx-image-cropper';
+import {MatDialog} from '@angular/material/dialog';
+import {CreateComponent} from '../create/create.component';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +24,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     public authServ: AuthService,
     private store: Store,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -35,8 +36,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.authServ.userData.subscribe(data => this.user = data);
     this.wishlist.subscribe(data => this.w = data);
   }
-  test() {
+  addWish() {
     console.log('Test worked');
+    const dialogRef = this.dialog.open(CreateComponent, {
+      height: '400px',
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe( wish => {
+      this.w.wishes.push(wish);
+      this.store.dispatch(new UpdateWishlist(this.user.uid, this.w));
+    });
   }
 
   ngAfterViewInit() {

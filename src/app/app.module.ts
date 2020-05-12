@@ -30,6 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     HomeComponent,
     ToolbarComponent,
     ProfileComponent,
-    ImageCropperComponent
+    ImageCropperComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,

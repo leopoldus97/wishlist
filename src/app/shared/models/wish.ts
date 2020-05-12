@@ -1,7 +1,7 @@
 export interface Wish {
-  uid: string;
+  uid?: string;
   name: string;
   description?: string;
-  buyer: string;
+  buyer?: string;
   url?: string;
 }

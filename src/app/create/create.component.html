@@ -1,0 +1,7 @@
+<h2>Add a wish</h2>
+<form [formGroup]="wishForm" (ngSubmit)="addWish()">
+  <input placeholder="Name" formControlName="name">
+  <input placeholder="Description" formControlName="description">
+  <input placeholder="Url" formControlName="url">
+  <Button type="submit">Add</Button>
+</form>
