@@ -4,6 +4,7 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {UserService} from '../services/user.service';
 import {tap} from 'rxjs/operators';
 import {CreateUser, GetUser, UpdateUser} from '../actions/user.action';
+import {AuthService} from '../auth/service/auth.service';
 
 export class UserStateModel {
   currentUser: User;
@@ -19,7 +20,10 @@ export class UserStateModel {
 })
 @Injectable()
 export class UserState {
-  constructor(private us: UserService) { }
+  constructor(
+    private us: UserService,
+    private as: AuthService
+  ) { }
 
   @Selector()
   static getUser(state: UserStateModel) {
@@ -44,8 +48,8 @@ export class UserState {
   }
 
   @Action(CreateUser)
-  createUser({getState, setState}: StateContext<UserStateModel>, {user}: CreateUser) {
-    return this.us.createUser(user).then(() => {
+  createUser({getState, setState}: StateContext<UserStateModel>, {user, password}: CreateUser) {
+    return this.as.SignUp(user, password).then(() => {
       const state = getState();
       setState({
         ...state,

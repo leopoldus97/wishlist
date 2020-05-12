@@ -1,0 +1,12 @@
+<p>create-user works!</p>
+<div>
+  <form [formGroup]="userForm">
+    <input placeholder="First name" formControlName="firstname">
+    <input placeholder="Last name" formControlName="lastname">
+    <input placeholder="Nickname" formControlName="nickname">
+    <input placeholder="Email" formControlName="email">
+  </form>
+  <input placeholder="Password" [(ngModel)]="password">
+  <input placeholder="Repeat password" [(ngModel)]="password2">
+  <button (click)="createUser()">Create user</button>
+</div>

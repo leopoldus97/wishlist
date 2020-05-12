@@ -12,5 +12,5 @@ export class UpdateUser {
 
 export class CreateUser {
   static readonly type = '[User] Create';
-  constructor(public user: User) { }
+  constructor(public user: User, public password: string) { }
 }

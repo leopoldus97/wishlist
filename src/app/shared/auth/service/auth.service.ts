@@ -30,11 +30,12 @@ export class AuthService {
     );
   }
 
-  SignUp(user: User, password: string) {
-    this.afa.auth.createUserWithEmailAndPassword(user.email, password).then(res => {
+  SignUp(user: User, password: string): Promise<any> {
+    return this.afa.auth.createUserWithEmailAndPassword(user.email, password).then(res => {
       console.log('You are successfully signed up!', res);
       this.router.navigate(['']);
-      this.UpdateUserData(res.user);
+      user.uid = res.user.uid;
+      this.UpdateUserData(user);
     }).catch(err => {
       console.log('Something is wrong:', err.message);
     });
@@ -64,7 +65,7 @@ export class AuthService {
     });
   }
 
-  UpdateUserData(user) {
+  UpdateUserData(user): Promise<any> {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
     const data: User = {

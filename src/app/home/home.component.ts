@@ -15,7 +15,7 @@ import {CreateComponent} from '../create/create.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HomeComponent implements OnInit {
 
   @Select(WishlistState.getWishlist) wishlist: Observable<Wishlist>;
   user: User;
@@ -48,13 +48,5 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.w.wishes.push(wish);
       this.store.dispatch(new UpdateWishlist(this.user.uid, this.w));
     });
-  }
-
-  ngAfterViewInit() {
-    document.querySelector('body').classList.add('login');
-  }
-
-  ngOnDestroy() {
-    document.querySelector('body').classList.remove('login');
   }
 }

@@ -33,6 +33,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CreateComponent } from './create/create.component';
 import {UserState} from './shared/states/user.state';
 import { AwayComponent } from './away/away.component';
+import { CreateUserComponent } from './admin/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AwayComponent } from './away/away.component';
     ProfileComponent,
     ImageCropperComponent,
     CreateComponent,
-    AwayComponent
+    AwayComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
