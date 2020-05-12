@@ -33,7 +33,6 @@ export class AuthService {
   SignUp(user: User, password: string): Promise<any> {
     return this.afa.auth.createUserWithEmailAndPassword(user.email, password).then(res => {
       console.log('You are successfully signed up!', res);
-      this.router.navigate(['']);
       user.uid = res.user.uid;
       this.UpdateUserData(user);
     }).catch(err => {
