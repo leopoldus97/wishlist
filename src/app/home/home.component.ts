@@ -41,8 +41,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const dialogRef = this.dialog.open(CreateComponent, {
       height: '400px',
       width: '600px',
+      disableClose: true
     });
     dialogRef.afterClosed().subscribe( wish => {
+      if (wish == null) { return; }
       this.w.wishes.push(wish);
       this.store.dispatch(new UpdateWishlist(this.user.uid, this.w));
     });

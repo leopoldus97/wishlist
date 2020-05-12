@@ -31,4 +31,9 @@ export class CreateComponent implements OnInit {
     this.dialogRef.close(this.wish);
   }
 
+  cancel(){
+    console.log('Process cancelled');
+    this.dialogRef.close(null);
+  }
+
 }
