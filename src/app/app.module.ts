@@ -31,6 +31,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ImageCropperComponent } from './shared/image-cropper/image-cropper.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { CreateComponent } from './create/create.component';
+import { AwayComponent } from './away/away.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CreateComponent } from './create/create.component';
     ToolbarComponent,
     ProfileComponent,
     ImageCropperComponent,
-    CreateComponent
+    CreateComponent,
+    AwayComponent
   ],
   imports: [
     BrowserModule,

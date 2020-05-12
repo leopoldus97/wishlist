@@ -1,0 +1,21 @@
+<h1 class="welcome">
+  Now viewing some user!
+</h1>
+
+<body>
+<h2>Wishes:</h2>
+<div *ngIf="w">
+  <div *ngFor="let wish of w.wishes">
+    <mat-card class="wish-card">
+      <mat-card-title>{{wish.name}}</mat-card-title>
+      <mat-card-content *ngIf="wish.description.toString().length > 0">{{wish.description}}</mat-card-content>
+      <mat-card-actions>
+        <a href="{{wish.url}}" target="_blank">{{wish.url}}</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<div *ngIf="!w">
+  <h1>You don't have any wish yet.</h1>
+</div>
+</body>

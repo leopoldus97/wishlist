@@ -2,6 +2,7 @@ import {Component, OnInit, AfterViewInit, OnDestroy, ViewChild} from '@angular/c
 import {AuthService} from '../shared/auth/service/auth.service';
 import {FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import {Router} from '@angular/router';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -33,10 +34,14 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private authServ: AuthService,
+    private router: Router,
     private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
+    if (this.authServ.getUserID() !== null) {
+      this.router.navigate(['/home']);
+    }
   }
 
   f() {
