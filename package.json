@@ -24,6 +24,7 @@
     "@angular/router": "~9.1.4",
     "@ngxs/devtools-plugin": "^3.6.2",
     "@ngxs/logger-plugin": "^3.6.2-dev.master-4f4ce8c",
+    "@ngxs/storage-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2-dev.master-4f4ce8c",
     "firebase": "^7.14.2",
     "ngx-image-cropper": "^3.1.8",

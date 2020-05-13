@@ -34,6 +34,7 @@ import { CreateComponent } from './create/create.component';
 import {UserState} from './shared/states/user.state';
 import { AwayComponent } from './away/away.component';
 import { CreateUserComponent } from './admin/create-user/create-user.component';
+import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,12 @@ import { CreateUserComponent } from './admin/create-user/create-user.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     FormsModule,
-    NgxsModule.forRoot([WishlistState, UserState]),
+    NgxsModule.forRoot([WishlistState, UserState], {
+      developmentMode: !environment.production
+    }),
+    NgxsStoragePluginModule.forRoot({
+      key: 'user'
+    }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     BrowserAnimationsModule,
