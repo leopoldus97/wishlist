@@ -49,13 +49,7 @@ export class UserState {
 
   @Action(CreateUser)
   createUser({getState, setState}: StateContext<UserStateModel>, {user, password}: CreateUser) {
-    return this.as.SignUp(user, password).then(() => {
-      const state = getState();
-      setState({
-        ...state,
-        currentUser: user
-      });
-    });
+    return this.as.SignUp(user, password);
   }
 
   @Action(UpdateUser)
