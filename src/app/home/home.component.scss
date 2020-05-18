@@ -1,15 +1,25 @@
-.welcome {
-  margin: 30px auto;
-  width: 80%;
-  max-width: 1000px;
-}
-
 body {
   text-align: center;
 }
 
 a:link, a:visited {
   color: white;
+}
+
+mat-spinner {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#loading {
+  margin-top: 10rem;
+  width: 100%;
+}
+
+.welcome {
+  margin: 30px auto;
+  width: 80%;
+  max-width: 1000px;
 }
 
 .wish-card {

@@ -3,9 +3,18 @@ button {
 }
 
 mat-icon {
-  alignment: center;
   color: #58427C;
   font-size: 9.2em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+mat-grid-list {
+  alignment: top;
+  float: top;
 }
 
 .profile-image {
@@ -16,10 +25,17 @@ mat-icon {
   background-size: 128px 128px;
 }
 
+.button-color {
+  background-color: #58427C;
+  color: #FCF6F5FF;
+}
+
 .image-container {
   position: relative;
   width: 128px;
   height: 128px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .image-container:hover .overlay {
@@ -40,4 +56,32 @@ mat-icon {
   background-color: #b8b5b5;
   border: #58427C double thin;
   border-radius: 50%;
+}
+
+.grid-items {
+  background-color: #2BAE66;
+  height: 18em;
+  width: 18em;
+  border-radius: 25%
+}
+
+.profile-container {
+  margin-top: 2em;
+}
+
+
+.group-list-container {
+  height: 100%;
+  width: 100%;
+}
+
+#profile-card {
+  text-align: center;
+}
+
+#group-card {
+  font-size: 1rem;
+  margin-bottom: 1.5em;
+  margin-top: 1.5em;
+  text-align: center;
 }

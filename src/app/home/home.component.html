@@ -1,18 +1,19 @@
-<h1 class="welcome">
-  Welcome {{user.firstname}}!
-</h1>
+<div *ngIf="user">
+  <h1 class="welcome">
+    Welcome {{user.firstname}}!
+  </h1>
 
-<body>
+  <body>
   <h2>Your wishes:</h2>
   <div *ngIf="w">
-  <div *ngFor="let wish of w.wishes">
-    <mat-card class="wish-card">
-      <mat-card-title>{{wish.name}}</mat-card-title>
-      <mat-card-content *ngIf="wish.description.toString().length > 0">{{wish.description}}</mat-card-content>
-      <mat-card-actions>
-        <a href="{{wish.url}}" target="_blank">{{wish.url}}</a>
-      </mat-card-actions>
-    </mat-card>
+    <div *ngFor="let wish of w.wishes">
+      <mat-card class="wish-card">
+        <mat-card-title>{{wish.name}}</mat-card-title>
+        <mat-card-content *ngIf="wish.description.toString().length > 0">{{wish.description}}</mat-card-content>
+        <mat-card-actions>
+          <a href="{{wish.url}}" target="_blank">{{wish.url}}</a>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
   <div *ngIf="!w">
@@ -23,4 +24,9 @@
       <mat-card-title>+</mat-card-title>
     </mat-card>
   </div>
-</body>
+  </body>
+</div>
+
+<div *ngIf="!(user)" id="loading">
+  <mat-spinner diameter="300"></mat-spinner>
+</div>

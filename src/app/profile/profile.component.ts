@@ -8,6 +8,8 @@ import {Select, Store} from '@ngxs/store';
 import {UserState} from '../shared/states/user.state';
 import {GetUser} from '../shared/actions/user.action';
 import {FileService} from '../shared/services/file.service';
+import {GroupService} from '../shared/services/group.service';
+import {Group} from '../shared/models/group';
 
 @Component({
   selector: 'app-profile',
@@ -23,14 +25,27 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private fs: FileService,
-    private store: Store
+    private store: Store,
+    public gs: GroupService
   ) { }
 
   ngOnInit(): void {
-    this.getCurrentUser();
+    const userID = localStorage.getItem('id');
+    this.store.dispatch(new GetUser(userID));
+    this.gs.loadGroupsForUser(userID, 1);
   }
 
-  getCurrentUser() { }
+  getCurrentGroups(): Group[] {
+    return this.gs.getCurrentGroups();
+  }
+
+  getPrevGroupList(userID: string, loadLimit?: number) {
+    this.gs.prevGroupsForUser(userID, loadLimit);
+  }
+
+  getNextGroupList(userID: string, loadLimit?: number) {
+    this.gs.nextGroupsForUser(userID, loadLimit);
+  }
 
   selectProfileImage(event) {
     if (event.target.files && event.target.files[0] && event.target.files[0].type.includes('image')) {

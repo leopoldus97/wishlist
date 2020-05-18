@@ -52,9 +52,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   login(){
-    this.authServ.SignIn(this.f().email.value, this.f().password.value).then((a) => {
-      this.store.dispatch(new GetUser(localStorage.getItem('id')));
-    });
+    this.authServ.SignIn(this.f().email.value, this.f().password.value);
   }
 
   ngAfterViewInit() {
