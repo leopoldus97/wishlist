@@ -14,3 +14,13 @@ export class CreateUser {
   static readonly type = '[User] Create';
   constructor(public user: User, public password: string) { }
 }
+
+export class ClearUser {
+  static readonly type = '[User] Clear';
+  constructor() { }
+}
+
+export class TestUser {
+  static readonly type = '[User] Test';
+  constructor() { }
+}

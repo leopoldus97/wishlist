@@ -9,6 +9,7 @@
     <mat-card class="wish-card">
       <mat-card-title>{{wish.name}}</mat-card-title>
       <mat-card-content *ngIf="wish.description.toString().length > 0">{{wish.description}}</mat-card-content>
+      <mat-card-content *ngIf="wish.buyer.length > 0">{{wish.buyer | json}}</mat-card-content>
       <mat-card-actions>
         <a href="{{wish.url}}" target="_blank">{{wish.url}}</a>
       </mat-card-actions>

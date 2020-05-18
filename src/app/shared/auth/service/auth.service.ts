@@ -6,6 +6,8 @@ import {Observable, of} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {User} from '../../models/user';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {ClearUser, GetUser} from '../../actions/user.action';
+import {Store} from '@ngxs/store';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class AuthService {
     private afa: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private store: Store
   ) {
     this.userData = afa.authState.pipe(
       switchMap(user => {
@@ -34,7 +37,8 @@ export class AuthService {
     return this.afa.auth.createUserWithEmailAndPassword(user.email, password).then(res => {
       console.log('You are successfully signed up!', res);
       user.uid = res.user.uid;
-      this.UpdateUserData(user);
+      // this.store.dispatch(new GetUser(user.uid));
+      // this.UpdateUserData(user);
     }).catch(err => {
       console.log('Something is wrong:', err.message);
     });
@@ -44,8 +48,9 @@ export class AuthService {
     const u = this.afa.auth.signInWithEmailAndPassword(email, password).then(res => {
       console.log('You are succesfully logged in!');
       localStorage.setItem('id', res.user.uid);
+      this.store.dispatch(new GetUser(res.user.uid));
       this.router.navigate(['home']);
-      this.UpdateUserData(res.user);
+      // this.UpdateUserData(res.user);
     }).catch(err => {
       console.log('Something is wrong:', err.message);
       this.snackBar.open(err.message);
@@ -55,7 +60,8 @@ export class AuthService {
 
   SignOut() {
     this.afa.auth.signOut().then(res => {
-      localStorage.removeItem('id');
+      localStorage.clear();
+      this.store.dispatch(new ClearUser());
       console.log('You are successfully signed out!', res);
       this.router.navigate(['']);
     }).catch(err => {

@@ -26,6 +26,9 @@ export class AwayComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    /*if (id) {
+      this.router.navigateByUrl('login');
+    } else*/
     if (id === this.as.getUserID()) {
       this.router.navigateByUrl('home');
     }

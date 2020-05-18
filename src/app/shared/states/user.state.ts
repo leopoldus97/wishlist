@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {UserService} from '../services/user.service';
 import {tap} from 'rxjs/operators';
-import {CreateUser, GetUser, UpdateUser} from '../actions/user.action';
+import {ClearUser, CreateUser, GetUser, TestUser, UpdateUser} from '../actions/user.action';
 import {AuthService} from '../auth/service/auth.service';
 
 export class UserStateModel {
@@ -60,6 +60,30 @@ export class UserState {
         ...state,
         currentUser: user
       });
+    });
+  }
+
+  @Action(ClearUser)
+  clearUser({getState, setState}: StateContext<UserStateModel>) {
+    const state = getState();
+    setState({
+      ...state,
+      currentUser: null,
+      profilePic: null
+    });
+  }
+
+  @Action(TestUser)
+  testUser({getState, setState}: StateContext<UserStateModel>) {
+    const state = getState();
+    setState({
+      ...state,
+      currentUser: {
+        firstname: 'test',
+        email: 'man@man.dk',
+        lastname: 'hello'
+      },
+      profilePic: null
     });
   }
 }

@@ -9,6 +9,8 @@ import {User} from '../shared/models/user';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {CreateComponent} from '../create/create.component';
+import {UserState} from '../shared/states/user.state';
+import {GetUser, TestUser} from '../shared/actions/user.action';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,7 @@ import {CreateComponent} from '../create/create.component';
 export class HomeComponent implements OnInit {
 
   @Select(WishlistState.getWishlist) wishlist: Observable<Wishlist>;
+  @Select(UserState.getUser) userState: Observable<User>;
   user: User;
   w: Wishlist;
 
@@ -29,11 +32,13 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if (this.authServ.getUserID() === null) {
+    const id = localStorage.getItem('id');
+    if (id === null) {
       this.router.navigate(['/login']);
     }
-    this.store.dispatch(new GetWishlist(this.authServ.getUserID()));
-    this.authServ.userData.subscribe(data => this.user = data);
+    this.store.dispatch(new GetWishlist(id));
+    this.store.dispatch(new GetUser(id));
+    this.userState.subscribe(data => this.user = data);
     this.wishlist.subscribe(data => this.w = data);
   }
   addWish() {
