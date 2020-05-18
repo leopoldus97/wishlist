@@ -11,6 +11,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {CreateComponent} from '../create/create.component';
 import {UserState} from '../shared/states/user.state';
 import {GetUser, TestUser} from '../shared/actions/user.action';
+import {Wish} from '../shared/models/wish';
+import {EditComponent} from '../edit/edit.component';
 
 @Component({
   selector: 'app-home',
@@ -19,10 +21,10 @@ import {GetUser, TestUser} from '../shared/actions/user.action';
 })
 export class HomeComponent implements OnInit {
 
-  @Select(WishlistState.getWishlist) wishlist: Observable<Wishlist>;
+  @Select(WishlistState.getWishlist) wishlistState: Observable<Wishlist>;
   @Select(UserState.getUser) userState: Observable<User>;
   user: User;
-  w: Wishlist;
+  wishlist: Wishlist;
 
   constructor(
     public authServ: AuthService,
@@ -39,7 +41,7 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(new GetWishlist(id));
     this.store.dispatch(new GetUser(id));
     this.userState.subscribe(data => this.user = data);
-    this.wishlist.subscribe(data => this.w = data);
+    this.wishlistState.subscribe(data => this.wishlist = data);
   }
   addWish() {
     console.log('Test worked');
@@ -50,8 +52,28 @@ export class HomeComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe( wish => {
       if (wish == null) { return; }
-      this.w.wishes.push(wish);
-      this.store.dispatch(new UpdateWishlist(this.user.uid, this.w));
+      this.wishlist.wishes.push(wish);
+      this.store.dispatch(new UpdateWishlist(this.user.uid, this.wishlist));
+    });
+  }
+
+  editWish(wishToUpdate: Wish) {
+    console.log('edit works');
+    const dialogRef = this.dialog.open(EditComponent, {
+      data: { wish: wishToUpdate },
+      height: '400px',
+      width: '600px',
+      disableClose: true
+    });
+    const wishIndex = this.wishlist.wishes.findIndex(wish =>
+      wish.name === wishToUpdate.name &&
+      wish.description === wishToUpdate.description &&
+      wish.url === wishToUpdate.url);
+
+    dialogRef.afterClosed().subscribe( wish => {
+      if (wish == null) { return; }
+      this.wishlist.wishes[wishIndex] = wish;
+      this.store.dispatch(new UpdateWishlist(this.user.uid, this.wishlist));
     });
   }
 }

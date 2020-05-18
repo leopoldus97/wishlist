@@ -36,6 +36,7 @@ import {CreateUserComponent} from './admin/create-user/create-user.component';
 import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ImageCropperComponent,
     CreateComponent,
     AwayComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
