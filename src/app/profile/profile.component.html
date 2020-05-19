@@ -31,7 +31,7 @@
                 <p>{{group.name}}</p>
                 <p>Members:</p>
                 <ol style="text-align: start">
-                  <li *ngFor="let member of group.members">{{member.firstname + ' ' + member.lastname}}</li>
+                  <li *ngFor="let member of group.members" (click)="showMember(member)">{{member.firstname + ' ' + member.lastname}}</li>
                 </ol>
               </div>
             </div>

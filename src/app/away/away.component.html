@@ -1,15 +1,15 @@
 <h1 class="welcome">
-  Now viewing some user!
+   WATCHING MODE
 </h1>
 
 <body>
-<h2>Wishes:</h2>
+<h2>{{watchedMember}} Wishes:</h2>
 <div *ngIf="w">
   <div *ngFor="let wish of w.wishes">
-    <mat-card class="wish-card">
+    <mat-card class="wish-card" (click)="buy(wish)">
       <mat-card-title>{{wish.name}}</mat-card-title>
       <mat-card-content *ngIf="wish.description.toString().length > 0">{{wish.description}}</mat-card-content>
-      <mat-card-content *ngIf="wish.buyer.length > 0">{{wish.buyer | json}}</mat-card-content>
+      <mat-card-content *ngIf="wish.buyer !== undefined && wish.buyer.length > 0">{{wish.buyer | json}}</mat-card-content>
       <mat-card-actions>
         <a href="{{wish.url}}" target="_blank">{{wish.url}}</a>
       </mat-card-actions>
@@ -17,6 +17,6 @@
   </div>
 </div>
 <div *ngIf="!w">
-  <h1>You don't have any wish yet.</h1>
+  <h1>This user doesn't have any wishes yet.</h1>
 </div>
 </body>

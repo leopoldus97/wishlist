@@ -10,6 +10,8 @@ import {GetUser} from '../shared/actions/user.action';
 import {FileService} from '../shared/services/file.service';
 import {GroupService} from '../shared/services/group.service';
 import {Group} from '../shared/models/group';
+import {Member} from '../shared/models/member';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -20,19 +22,20 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Select(UserState.getUser) user: Observable<User>;
   @Select(UserState.getProfilePic) profilePic: Observable<string>;
-
+  userID: string;
   constructor(
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private fs: FileService,
     private store: Store,
-    public gs: GroupService
-  ) { }
+    public gs: GroupService,
+    private router: Router
+  ) { this.userID = localStorage.getItem('id'); }
 
   ngOnInit(): void {
-    const userID = localStorage.getItem('id');
-    this.store.dispatch(new GetUser(userID));
-    this.gs.loadGroupsForUser(userID, 1);
+
+    this.store.dispatch(new GetUser(this.userID));
+    this.gs.loadGroupsForUser(this.userID, 1);
   }
 
   getCurrentGroups(): Group[] {
@@ -72,11 +75,16 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog closed.');
-      const userID = localStorage.getItem('id');
       this.fs.uploadPicture(result).then(() => {
-        this.store.dispatch(new GetUser(userID));
+        this.store.dispatch(new GetUser(this.userID));
       });
     });
   }
 
+  showMember(member: Member) {
+    if (this.userID !== member.uid) {
+      localStorage.setItem('watchedMember', member.firstname);
+      this.router.navigateByUrl('user/' + member.uid);
+    }
+  }
 }

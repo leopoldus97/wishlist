@@ -37,6 +37,7 @@ import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { EditComponent } from './edit/edit.component';
+import { BuyComponent } from './buy/buy.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { EditComponent } from './edit/edit.component';
     CreateComponent,
     AwayComponent,
     CreateUserComponent,
-    EditComponent
+    EditComponent,
+    BuyComponent
   ],
   imports: [
     BrowserModule,

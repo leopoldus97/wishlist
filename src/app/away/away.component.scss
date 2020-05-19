@@ -17,8 +17,11 @@ a:link, a:visited {
   width: 80%;
   max-width: 1000px;
   margin: 30px auto;
-}
 
+}
+.wish-card:hover {
+  cursor: pointer;
+}
 .edit-bar {
   width: 80%;
   max-width: 1000px;
