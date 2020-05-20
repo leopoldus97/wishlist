@@ -12,6 +12,7 @@ import {GroupService} from '../shared/services/group.service';
 import {Group} from '../shared/models/group';
 import {Member} from '../shared/models/member';
 import {Router} from '@angular/router';
+import {AuthService} from '../shared/auth/service/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,7 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
     private fs: FileService,
     private store: Store,
     public gs: GroupService,
-    private router: Router
+    public authService: AuthService
   ) { this.userID = localStorage.getItem('id'); }
 
   ngOnInit(): void {
@@ -38,17 +39,7 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gs.loadGroupsForUser(this.userID, 1);
   }
 
-  getCurrentGroups(): Group[] {
-    return this.gs.getCurrentGroups();
-  }
 
-  getPrevGroupList(userID: string, loadLimit?: number) {
-    this.gs.prevGroupsForUser(userID, loadLimit);
-  }
-
-  getNextGroupList(userID: string, loadLimit?: number) {
-    this.gs.nextGroupsForUser(userID, loadLimit);
-  }
 
   selectProfileImage(event) {
     if (event.target.files && event.target.files[0] && event.target.files[0].type.includes('image')) {
@@ -81,10 +72,7 @@ export class ProfileComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  showMember(member: Member) {
-    if (this.userID !== member.uid) {
-      localStorage.setItem('watchedMember', member.firstname);
-      this.router.navigateByUrl('user/' + member.uid);
-    }
+  sendLink(email: string) {
+    this.authService.resetPassword(email);
   }
 }

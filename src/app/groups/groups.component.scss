@@ -1,5 +1,20 @@
-.container{
-  margin-top: 10%;
+button {
+  background-color: #58427C;
+}
+
+mat-icon {
+  color: #58427C;
+  font-size: 9.2em;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+mat-grid-list {
+  alignment: top;
+  float: top;
 }
 
 .profile-image {

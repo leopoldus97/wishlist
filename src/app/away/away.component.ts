@@ -12,7 +12,7 @@ import {GetUser} from '../shared/actions/user.action';
 import {Wish} from '../shared/models/wish';
 import {CreateComponent} from '../create/create.component';
 import {MatDialog} from '@angular/material/dialog';
-import {BuyComponent} from '../buy/buy.component';
+import {BuyCancelComponent} from '../buy-cancel/buy-cancel.component';
 
 @Component({
   selector: 'app-away',
@@ -51,7 +51,8 @@ export class AwayComponent implements OnInit {
 
   buy(wish: Wish) {
     if (wish.buyer === undefined || wish.buyer.find(buyer  => buyer.email === this.user.email) === undefined ) {
-    const dialogRef = this.dialog.open(BuyComponent, {
+    const dialogRef = this.dialog.open(BuyCancelComponent, {
+      data: { buyMode: true },
       height: 'auto',
       width: 'auto',
       disableClose: true
@@ -76,7 +77,27 @@ export class AwayComponent implements OnInit {
       this.store.dispatch(new UpdateWishlist(this.watchedMemberID, this.w));
 
     }); } else {
-      console.log('you are already buying this gift');
+      this.cancel(wish);
     }
+  }
+
+  cancel(wish: Wish) {
+     const dialogRef = this.dialog.open(BuyCancelComponent, {
+       data: { buyMode: false },
+       height: 'auto',
+       width: 'auto',
+       disableClose: true
+     });
+     dialogRef.afterClosed().subscribe( result => {
+       if (result == null) { return; }
+
+       const buyerIndex = wish.buyer.findIndex(buyer =>
+         buyer.uid === this.user.uid);
+
+       wish.buyer.splice(buyerIndex);
+
+       this.store.dispatch(new UpdateWishlist(this.watchedMemberID, this.w));
+
+     });
   }
 }

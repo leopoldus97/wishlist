@@ -3,8 +3,11 @@
     <button class="button-color" mat-mini-fab aria-label="home" routerLink="/home">
       <mat-icon>home</mat-icon>
     </button>
+    <button class="button-color" mat-mini-fab aria-label="tag_faces" style="margin-left: 20px" routerLink="/groups" >
+      <mat-icon>tag_faces</mat-icon>
+    </button>
     <span class="bar-spacer"></span>
-    <span class="text-color">Wishlist</span>
+    <span class="text-color" style="padding-left: 3%">Wishlist</span>
     <span class="bar-spacer"></span>
     <div routerLink="/profile" *ngIf="(auth.userData | async)">
       <img *ngIf="profilePic | async" [src]="profilePic | async" class="profile-image">

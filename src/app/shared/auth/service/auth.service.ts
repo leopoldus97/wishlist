@@ -62,7 +62,7 @@ export class AuthService {
     this.afa.auth.signOut().then(res => {
       localStorage.clear();
       this.store.dispatch(new ClearUser());
-      console.log('You are successfully signed out!', res);
+      this.snackBar.open('You are successfully signed out!');
       this.router.navigate(['']);
     }).catch(err => {
       console.log('Something is wrong:', err.message);
@@ -86,7 +86,11 @@ export class AuthService {
       this.snackBar.open(err.message);
     });
   }
-
+  resetPassword(email: string) {
+    this.afa.auth.sendPasswordResetEmail(email).then(() =>
+      this.snackBar.open('Link was sent to your email')
+    );
+  }
   getUserID(): string {
     return localStorage.getItem('id');
   }

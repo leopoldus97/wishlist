@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   addWish() {
     console.log('Test worked');
     const dialogRef = this.dialog.open(CreateComponent, {
+      data: { buyMode: true },
       height: '400px',
       width: '600px',
       disableClose: true
@@ -60,7 +61,6 @@ export class HomeComponent implements OnInit {
   editWish(wishToUpdate: Wish) {
     console.log('edit works');
     const dialogRef = this.dialog.open(EditComponent, {
-      data: { wish: wishToUpdate },
       height: '400px',
       width: '600px',
       disableClose: true

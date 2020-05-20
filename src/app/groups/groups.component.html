@@ -1,0 +1,31 @@
+<div *ngIf="user | async as u" class="container">
+  <mat-grid-list cols="2" rowHeight="1:1" class="profile-container">
+
+    <mat-grid-tile colspan="1" rowspan="1">
+      <div class="group-list-container">
+        <mat-grid-list cols="2" rowHeight="1:1" *ngIf="getCurrentGroups() as g">
+          <mat-grid-tile colspan="1" rowspan="1" *ngFor="let group of g">
+            <div class="grid-items">
+              <div id="group-card">
+                <p>{{group.id}}</p>
+                <p>{{group.name}}</p>
+                <p>Members:</p>
+                <ol style="text-align: start">
+                  <li *ngFor="let member of group.members" (click)="showMember(member)">{{member.firstname + ' ' + member.lastname}}</li>
+                </ol>
+              </div>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile colspan="2" rowspan="1">
+            <div>
+              <button class="button-color" mat-flat-button (click)="getPrevGroupList(u.uid)"
+                      [disabled]="this.gs.disablePrev || !(this.gs.paginationClickedCount>0)">Previous</button>
+              <b> Page no: {{this.gs.paginationClickedCount+1}} </b>
+              <button class="button-color" mat-flat-button (click)="getNextGroupList(u.uid)" [disabled]="this.gs.disableNext">Next</button>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

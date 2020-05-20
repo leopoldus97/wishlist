@@ -37,7 +37,8 @@ import {NgxsStoragePluginModule} from '@ngxs/storage-plugin';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { EditComponent } from './edit/edit.component';
-import { BuyComponent } from './buy/buy.component';
+import { BuyCancelComponent } from './buy-cancel/buy-cancel.component';
+import { GroupsComponent } from './groups/groups.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { BuyComponent } from './buy/buy.component';
     AwayComponent,
     CreateUserComponent,
     EditComponent,
-    BuyComponent
+    BuyCancelComponent,
+    GroupsComponent
   ],
   imports: [
     BrowserModule,
