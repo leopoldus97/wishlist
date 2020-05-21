@@ -38,7 +38,7 @@ export class AuthService {
       console.log('You are successfully signed up!', res);
       user.uid = res.user.uid;
       // this.store.dispatch(new GetUser(user.uid));
-      // this.UpdateUserData(user);
+      this.UpdateUserData(user);
     }).catch(err => {
       console.log('Something is wrong:', err.message);
     });
