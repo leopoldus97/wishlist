@@ -32,7 +32,10 @@ export class GroupsComponent implements OnInit {
   ) { this.userID = localStorage.getItem('id'); }
 
   ngOnInit(): void {
-
+    const id = localStorage.getItem('id');
+    if (id === null) {
+      this.router.navigate(['/login']);
+    }
     this.store.dispatch(new GetUser(this.userID));
     this.gs.loadGroupsForUser(this.userID, 1);
   }

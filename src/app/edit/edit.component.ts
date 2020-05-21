@@ -38,8 +38,12 @@ export class EditComponent implements OnInit {
   }
 
   cancel(){
-    console.log('Process cancelled');
-    this.dialogRef.close(null);
+    console.log('Process of editing cancelled');
+    this.dialogRef.close(true);
   }
 
+  remove() {
+    console.log('wish removed');
+    this.dialogRef.close(false);
+  }
 }

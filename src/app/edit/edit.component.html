@@ -1,8 +1,14 @@
-<h2>Edit your wish</h2>
-<form [formGroup]="wishForm" (ngSubmit)="editWish()">
+<div>
+<h2 id="title">Edit your wish</h2>
+<form [formGroup]="wishForm" (ngSubmit)="editWish()" id="wishForm">
   <input placeholder="Name" formControlName="name">
   <input placeholder="Description" formControlName="description">
-  <input placeholder="Paste url" formControlName="url">
-  <Button type="submit">Save</Button>
+
+  <textarea placeholder="Paste url" formControlName="url" id="url" form="wishForm"></textarea>
+  <br><br>
+  <button type="submit">Save</button>
 </form>
-<Button (click)="cancel()">Cancel</Button>
+<button (click)="cancel()" style="margin-top: 10px; margin-bottom: 15px">Cancel</button>
+<br><br>
+<button (click)="remove()">Delete</button>
+</div>
