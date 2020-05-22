@@ -2,10 +2,12 @@
 <div *ngIf="data.buyMode">
   <h2>Do you want to buy this gift?</h2>
   <Button (click)="buyWish()">Buy</Button>
+  <br>
   <Button (click)="cancel()">Cancel</Button>
 </div>
 <div *ngIf="!data.buyMode">
   <h2>Do you want to cancel buying this gift?</h2>
   <Button (click)="stopBuying()">Yes</Button>
+  <br>
   <Button (click)="cancel()">No</Button>
 </div>

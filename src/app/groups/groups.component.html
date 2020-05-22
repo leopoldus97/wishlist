@@ -1,31 +1,68 @@
 <div *ngIf="user | async as u" class="container">
-  <mat-grid-list cols="2" rowHeight="1:1" class="profile-container">
+  <h1>Groups:</h1>
+  <mat-accordion multi *ngIf="getCurrentGroups() as g">
+    <mat-expansion-panel *ngFor="let group of g">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{group.name | titlecase}}
+        </mat-panel-title>
+        <mat-panel-description>
+          Description
+        </mat-panel-description>
+      </mat-expansion-panel-header>
 
-    <mat-grid-tile colspan="1" rowspan="1">
-      <div class="group-list-container">
-        <mat-grid-list cols="2" rowHeight="1:1" *ngIf="getCurrentGroups() as g">
-          <mat-grid-tile colspan="1" rowspan="1" *ngFor="let group of g">
-            <div class="grid-items">
-              <div id="group-card">
-                <p>{{group.id}}</p>
-                <p>{{group.name}}</p>
-                <p>Members:</p>
-                <ol style="text-align: start">
-                  <li *ngFor="let member of group.members" (click)="showMember(member)">{{member.firstname + ' ' + member.lastname}}</li>
-                </ol>
-              </div>
-            </div>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="2" rowspan="1">
-            <div>
-              <button class="button-color" mat-flat-button (click)="getPrevGroupList(u.uid)"
-                      [disabled]="this.gs.disablePrev || !(this.gs.paginationClickedCount>0)">Previous</button>
-              <b> Page no: {{this.gs.paginationClickedCount+1}} </b>
-              <button class="button-color" mat-flat-button (click)="getNextGroupList(u.uid)" [disabled]="this.gs.disableNext">Next</button>
-            </div>
-          </mat-grid-tile>
-        </mat-grid-list>
+      <h2>Members:</h2>
+
+      <div class="member-list">
+        <mat-list *ngFor="let member of group.members">
+          <mat-list-item (click)="showMember(member)" *ngIf="!(u.uid == member.uid)">
+            <img hidden matListAvatar src="../../assets/defaultUserIcon.png" alt="defProfPic">
+            <img matListAvatar [src]="member.pictureURL">
+            <h3 matLine>{{member.firstname + ' ' + member.lastname}}</h3>
+          </mat-list-item>
+          <mat-list-item *ngIf="group.members.length <= 1 && member.uid == u.uid">
+            <h1>Only you</h1>
+          </mat-list-item>
+        </mat-list>
       </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+
+    </mat-expansion-panel>
+
+    <div #interactBtn>
+      <button mat-flat-button class="create-button left-button" (click)="create.hidden = false; interactBtn.hidden = true">Create</button>
+      <!--<button mat-flat-button class="join-button right-buttom" (click)="join.hidden = false; interactBtn.hidden = true">Join</button>-->
+    </div>
+
+    <div #create hidden>
+      <div>
+        <mat-form-field class="interact-input">
+          <input matInput #inpCreate placeholder="Name">
+        </mat-form-field>
+      </div>
+      <div style="text-align: center; margin-top: 1em ">
+        <button mat-flat-button class="cancel-button left-button" (click)="create.hidden = true; interactBtn.hidden = false">Cancel</button>
+        <button mat-flat-button class="interact-button right-buttom" (click)="createGroup(u, inpCreate.value); create.hidden = true; interactBtn.hidden = false">Create</button>
+      </div>
+    </div>
+
+    <!--<div #join hidden>
+      <div>
+        <mat-form-field class="interact-input">
+          <input matInput #inpJoin>
+        </mat-form-field>
+      </div>
+      <div style="text-align: center; margin-top: 1em ">
+        <button mat-flat-button class="cancel-button left-button" (click)="join.hidden = true; interactBtn.hidden = false">Cancel</button>
+        <button mat-flat-button class="interact-button right-buttom" (click)="joinGroup(u, inpJoin.value); join.hidden = true; interactBtn.hidden = false">Join</button>
+      </div>
+    </div>--->
+
+    <div class="pagination-container">
+      <button class="button-color" mat-flat-button (click)="getPrevGroupList(u.uid)"
+              [disabled]="this.gs.disablePrev || !(this.gs.paginationClickedCount>0)">Previous</button>
+      <b> Page no: {{this.gs.paginationClickedCount+1}} </b>
+      <button class="button-color" mat-flat-button (click)="getNextGroupList(u.uid)" [disabled]="this.gs.disableNext">Next</button>
+    </div>
+
+  </mat-accordion>
 </div>

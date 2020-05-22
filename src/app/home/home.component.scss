@@ -5,6 +5,9 @@ body {
 a:link, a:visited {
   color: white;
 }
+#transparentText{
+  color: rgba(255,255,255, 0.8);
+}
 
 mat-spinner {
   margin-right: auto;

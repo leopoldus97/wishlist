@@ -1,7 +1,7 @@
 import {Member} from './member';
 
 export interface Group {
-  id: string;
+  id?: string;
   name: string;
   members: Member[];
 }

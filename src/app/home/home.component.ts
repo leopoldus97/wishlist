@@ -13,6 +13,7 @@ import {UserState} from '../shared/states/user.state';
 import {GetUser, TestUser} from '../shared/actions/user.action';
 import {Wish} from '../shared/models/wish';
 import {EditComponent} from '../edit/edit.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
   wishlist: Wishlist;
 
   constructor(
-    public authServ: AuthService,
+    private snackBar: MatSnackBar,
     private store: Store,
     private router: Router,
     private dialog: MatDialog
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
     console.log('Test worked');
     const dialogRef = this.dialog.open(CreateComponent, {
       height: '400px',
-      width: '600px',
+      width: '400px',
       disableClose: true
     });
     dialogRef.afterClosed().subscribe( wish => {
@@ -62,7 +63,7 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(EditComponent, {
       data: { wish: wishToUpdate },
       height: '400px',
-      width: '600px',
+      width: '400px',
       disableClose: true
     });
     const wishIndex = this.wishlist.wishes.findIndex(wish =>
@@ -71,9 +72,19 @@ export class HomeComponent implements OnInit {
       wish.url === wishToUpdate.url);
 
     dialogRef.afterClosed().subscribe( wish => {
-      if (wish == null) { return; }
+      if (wish === true) { return; }
+      else if (wish === false) {
+        this.removeWish(wishIndex);
+        return;
+      }
       this.wishlist.wishes[wishIndex] = wish;
       this.store.dispatch(new UpdateWishlist(this.user.uid, this.wishlist));
     });
+  }
+
+  removeWish(wishToRemoveIndex: number) {
+    this.wishlist.wishes.splice(wishToRemoveIndex);
+    this.store.dispatch(new UpdateWishlist(this.user.uid, this.wishlist));
+    this.snackBar.open('Your wish was removed.');
   }
 }

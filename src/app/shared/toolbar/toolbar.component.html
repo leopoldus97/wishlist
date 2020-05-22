@@ -1,15 +1,15 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <button class="button-color" mat-mini-fab aria-label="home" routerLink="/home">
+    <button class="button-color" matTooltip="Home Page" matTooltipShowDelay="300" mat-mini-fab aria-label="home" routerLink="/home">
       <mat-icon>home</mat-icon>
     </button>
-    <button class="button-color" mat-mini-fab aria-label="tag_faces" style="margin-left: 20px" routerLink="/groups" >
+    <button class="button-color" matTooltip="Group Page" matTooltipShowDelay="300" mat-mini-fab aria-label="tag_faces" style="margin-left: 20px" routerLink="/groups" >
       <mat-icon>tag_faces</mat-icon>
     </button>
     <span class="bar-spacer"></span>
     <span class="text-color" style="padding-left: 3%">Wishlist</span>
     <span class="bar-spacer"></span>
-    <div routerLink="/profile" *ngIf="(auth.userData | async)">
+    <div routerLink="/profile" matTooltip="Profile Page" matTooltipShowDelay="300" *ngIf="(auth.userData | async)">
       <img *ngIf="profilePic | async" [src]="profilePic | async" class="profile-image">
       <img *ngIf="!(profilePic | async)" src="../../../assets/defaultUserIcon.png" class="profile-image"/>
     </div>
