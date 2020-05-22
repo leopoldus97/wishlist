@@ -39,6 +39,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { EditComponent } from './edit/edit.component';
 import { BuyCancelComponent } from './buy-cancel/buy-cancel.component';
 import { GroupsComponent } from './groups/groups.component';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -82,7 +85,10 @@ import { GroupsComponent } from './groups/groups.component';
     MatMenuModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatGridListModule
+    MatGridListModule,
+    MatListModule,
+    MatExpansionModule,
+    MatTooltipModule
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000}}

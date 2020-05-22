@@ -29,7 +29,7 @@ export class GroupService {
 
   private currentGroups: Group[];
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private fs: FileService, private snackBar: MatSnackBar) { }
 
   /*getGroupsForUser(userID: string): Observable<Group[]> {
     return this.afs.collection<Group>(this.path, ref => ref.where('memberID', 'array-contains', userID)
@@ -71,6 +71,18 @@ export class GroupService {
 
   leaveGroup(user: User, groupID: string) {
 
+  createGroup(group: Group, user: User) {
+    const mem: Member = {
+      uid: user.uid,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      nickname: user.nickname,
+      pictureURL: user.pictureURL
+    };
+    group.members.push(mem);
+    this.afs.collection<Group>(this.path).add(group).then((a) => a.update({memberID: [user.uid]}).then(() => {
+      this.snackBar.open('Group created');
+    }));
   }
 
   getCurrentGroups(): Group[] {

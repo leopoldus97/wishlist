@@ -1,28 +1,30 @@
-button {
-  background-color: #58427C;
-}
-
-mat-icon {
-  color: #58427C;
-  font-size: 9.2em;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
 mat-grid-list {
   alignment: top;
   float: top;
 }
 
-.profile-image {
-  width: 128px;
-  height: 128px;
-  border-radius: 100%;
-  border: #2BAE66 groove thin;
-  background-size: 128px 128px;
+mat-list-item:hover {
+  cursor: pointer;
+  color: #535151;
+}
+
+mat-expansion-panel {
+  background-color: #2BAE66;
+  width: 60%;
+  text-align: center;
+  margin: 1em auto;
+}
+
+.member-list {
+  width: fit-content;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container {
+  width: 60%;
+  text-align: center;
+  margin: 5rem auto;
 }
 
 .button-color {
@@ -30,53 +32,84 @@ mat-grid-list {
   color: #FCF6F5FF;
 }
 
-.image-container {
-  position: relative;
-  width: 128px;
-  height: 128px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.image-container:hover .overlay {
-  opacity: 0.7;
-  cursor: pointer;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .1s ease;
-  background-color: #b8b5b5;
-  border: #58427C double thin;
-  border-radius: 50%;
+.button-color:disabled {
+  background-color: #58427C;
+  opacity: 50%;
 }
 
 .grid-items {
   background-color: #2BAE66;
-  height: 18em;
-  width: 18em;
+  height: auto;
+  width: auto;
   border-radius: 25%
 }
 
+.join-button {
+  width: 2em;
+  background-color: #58427C;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  opacity: 85%;
+}
+
+.create-button {
+  width: 2em;
+  background-color: #23c63f;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  opacity: 85%;
+}
+
+.interact-button {
+  width: 2em;
+  background-color: #2BAE66;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.cancel-button {
+  width: 2em;
+  background-color: indianred;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.interact-input {
+  background-color: #b8b5b5;
+  border-radius: 5%;
+  height: 3.2em;
+  width: 14em;
+  opacity: 50%;
+  border: darkgrey thin solid;
+}
+
+.left-button {
+  margin-right: 0.5em;
+}
+
+.right-buttom {
+  margin-left: 0.5em;
+}
+
 .profile-container {
-  margin-top: 2em;
+  margin-top: 1.5em;
+  text-align: center;
+}
+.pagination-container {
+  padding: 1em;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
 .group-list-container {
   height: 100%;
   width: 100%;
-}
-
-#profile-card {
-  text-align: center;
 }
 
 #group-card {

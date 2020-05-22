@@ -4,7 +4,6 @@ import {UserState} from '../shared/states/user.state';
 import {Observable} from 'rxjs';
 import {User} from '../shared/models/user';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {MatDialog} from '@angular/material/dialog';
 import {FileService} from '../shared/services/file.service';
 import {GroupService} from '../shared/services/group.service';
 import {Router} from '@angular/router';
@@ -20,11 +19,9 @@ import {Member} from '../shared/models/member';
 export class GroupsComponent implements OnInit {
 
   @Select(UserState.getUser) user: Observable<User>;
-  @Select(UserState.getProfilePic) profilePic: Observable<string>;
   userID: string;
   constructor(
     private snackBar: MatSnackBar,
-    private dialog: MatDialog,
     private fs: FileService,
     private store: Store,
     public gs: GroupService,
@@ -37,7 +34,7 @@ export class GroupsComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.store.dispatch(new GetUser(this.userID));
-    this.gs.loadGroupsForUser(this.userID, 1);
+    this.gs.loadGroupsForUser(this.userID);
   }
   getCurrentGroups(): Group[] {
     return this.gs.getCurrentGroups();
@@ -56,4 +53,17 @@ export class GroupsComponent implements OnInit {
       this.router.navigateByUrl('user/' + member.uid);
     }
   }
+
+  createGroup(user: User, groupName: string) {
+    const group: Group = {
+      name: groupName,
+      members: []
+    };
+    this.gs.createGroup(group, user);
+  }
+
+  /*joinGroup(user: User, groupID: string) {
+    console.log(groupID);
+    this.gs.joinGroup(user, groupID);
+  }*/
 }
