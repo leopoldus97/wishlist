@@ -3,6 +3,8 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {Group} from '../models/group';
 import {User} from '../models/user';
 import {Member} from '../models/member';
+import {FileService} from './file.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -70,6 +72,8 @@ export class GroupService {
   }
 
   leaveGroup(user: User, groupID: string) {
+
+  }
 
   createGroup(group: Group, user: User) {
     const mem: Member = {
@@ -209,3 +213,4 @@ export class GroupService {
     return this.prevStrtAt[this.paginationClickedCount - 1];
   }
 }
+
