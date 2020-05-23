@@ -16,4 +16,10 @@ export class WishRepositoryFirebase implements WishRepository{
     })
   }
 
+  deleteUserWishes(uid: string): Promise<any> {
+    return this.db().doc(`wishlist/${uid}`).delete();
+  }
+
 }
+
+

@@ -2,8 +2,8 @@
 
       <div id="profile-card">
         <div class="image-container">
-          <img *ngIf="profilePic | async" [src]="profilePic | async" class="profile-image" id="profileImage"/>
-          <img *ngIf="!(profilePic | async)" src="../../assets/defaultUserIcon.png" class="profile-image"/>
+          <img *ngIf="profilePic | async as pp" [src]="pp" class="profile-image" id="profileImage"/>
+          <!--<img *ngIf="!(profilePic | async)" src="../../assets/defaultUserIcon.png" class="profile-image"/>-->
           <div class="overlay" (click)="this.fileInput.click()">
             <mat-icon>add</mat-icon>
           </div>

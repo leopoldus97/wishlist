@@ -8,4 +8,9 @@ export class WishService {
     return this.repo.createWishlist(uid);
   }
 
+  deleteUserWishes(uid: string): Promise<any> {
+    return this.repo.deleteUserWishes(uid);
+  }
 }
+
+

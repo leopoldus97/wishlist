@@ -11,4 +11,8 @@ export class WishControllerFirebase implements WishController {
     return this.serv.createWishlist(context.params.uid);
   }
 
+  deleteUserWishes(snap: DocumentSnapshot, context: EventContext): Promise<any> {
+    return this.serv.deleteUserWishes(context.params.uid);
+  }
+
 }

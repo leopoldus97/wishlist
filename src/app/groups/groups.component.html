@@ -16,7 +16,7 @@
       <div class="member-list">
         <mat-list *ngFor="let member of group.members">
           <mat-list-item (click)="showMember(member)" *ngIf="!(u.uid == member.uid)">
-            <img hidden matListAvatar src="../../assets/defaultUserIcon.png" alt="defProfPic">
+            <!--<img hidden matListAvatar src="../../assets/defaultUserIcon.png" alt="defProfPic">-->
             <img matListAvatar [src]="member.pictureURL">
             <h3 matLine>{{member.firstname + ' ' + member.lastname}}</h3>
           </mat-list-item>

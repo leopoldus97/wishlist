@@ -67,13 +67,32 @@ export class GroupService {
     });
   }
 
-  joinGroup(user: User, groupID: string) {
-
+  /*joinGroup(user: User, groupID: string) {
+    const mem: Member = {
+      uid: user.uid,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      nickname: user.nickname,
+      pictureURL: user.pictureURL
+    };
+    this.afs.collection(this.path).doc<Group>(groupID).valueChanges().toPromise().then((a) => {
+      this.afs.collection(this.path).doc<Group>(groupID).update(a).then(() => this.snackBar.open('You have joined the group'));
+    }).catch(error => this.snackBar.open('The ID does not exist\n' + error));
   }
 
-  leaveGroup(user: User, groupID: string) {
-
-  }
+  leaveGroup(user: User, group: Group) {
+    const mem: Member = {
+      uid: user.uid,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      nickname: user.nickname,
+      pictureURL: user.pictureURL
+    };
+    const membersInGroup = group.members;
+    const index = membersInGroup.indexOf(mem);
+    membersInGroup.splice(index, 1);
+    this.afs.collection(this.path).doc<Group>(group.id).update({members: membersInGroup});
+  }*/
 
   createGroup(group: Group, user: User) {
     const mem: Member = {
@@ -88,6 +107,12 @@ export class GroupService {
       this.snackBar.open('Group created');
     }));
   }
+
+  /*deleteGroup(groupID: string): Promise<any> {
+    return this.afs.collection(this.path).doc(groupID).delete().then(() => {
+      this.snackBar.open('Group Deleted');
+    });
+  }*/
 
   getCurrentGroups(): Group[] {
     return this.currentGroups;
