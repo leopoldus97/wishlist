@@ -3,8 +3,6 @@ import * as admin from 'firebase-admin';
 
 export class WishRepositoryFirebase implements WishRepository{
 
-
-
   db(): FirebaseFirestore.Firestore {
     return admin.firestore();
   }
@@ -18,6 +16,14 @@ export class WishRepositoryFirebase implements WishRepository{
 
   deleteUserWishes(uid: string): Promise<any> {
     return this.db().doc(`wishlist/${uid}`).delete();
+  }
+
+  async wishWithIdExists(uid: string): Promise<boolean> {
+    let docRef = this.db().collection('wishlist').doc(uid);
+
+    let doc = await docRef.get();
+
+    return Promise.resolve(doc.exists);
   }
 
 }

@@ -4,4 +4,5 @@ export interface WishRepository {
 
   deleteUserWishes(uid: string): Promise<any>;
 
+  wishWithIdExists(uid: string): Promise<boolean>;
 }
