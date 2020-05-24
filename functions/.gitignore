@@ -10,3 +10,5 @@ node_modules/
 secret.json
 
 coverage/
+
+!jest.config.js
