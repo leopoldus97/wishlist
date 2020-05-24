@@ -9,8 +9,8 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "test": "jest --coverage",
-    "test:watch": "jest --coverage --watchAll",
+    "test": "jest --coverage --config ./jest.config.js",
+    "test:watch": "jest --coverage --config ./jest.config.js --watchAll",
     "prettier": "prettier --check \"**/*.ts\""
   },
   "engines": {
