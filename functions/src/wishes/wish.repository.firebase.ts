@@ -18,7 +18,7 @@ export class WishRepositoryFirebase implements WishRepository{
     return this.db().doc(`wishlist/${uid}`).delete();
   }
 
-  async wishWithIdExists(uid: string): Promise<boolean> {
+  async hasWishlistWithId(uid: string): Promise<boolean> {
     let docRef = this.db().collection('wishlist').doc(uid);
 
     let doc = await docRef.get();

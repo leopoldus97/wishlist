@@ -16,9 +16,11 @@ export class RepositoryTestHelper {
             })
             .setup(repo => repo.createWishlist(this.db.uid2))
             .returns(Promise.resolve(this.db.wishlist2))
-            .setup(repo => repo.wishWithIdExists(this.db.uid1))
+            .setup(repo => repo.hasWishlistWithId(this.db.uid1))
             .callback((val) => { 
                 return Promise.resolve(arr.includes(val.args[0]))
             })
+            .setup(repo => repo.deleteUserWishes(this.db.uid1))
+            .returns(Promise.resolve());
     }
 }
