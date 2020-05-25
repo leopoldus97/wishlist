@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Wish} from '../shared/models/wish';
+import {Wish} from '../../shared/models/wish';
 import {MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder} from '@angular/forms';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';

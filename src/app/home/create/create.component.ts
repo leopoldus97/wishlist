@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Wish} from '../shared/models/wish';
+import {Wish} from '../../shared/models/wish';
 import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({

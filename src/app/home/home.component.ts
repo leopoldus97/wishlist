@@ -8,11 +8,11 @@ import {CreateWishlist, GetWishlist, UpdateWishlist} from '../shared/actions/wis
 import {User} from '../shared/models/user';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import {CreateComponent} from '../create/create.component';
+import {CreateComponent} from './create/create.component';
 import {UserState} from '../shared/states/user.state';
 import {GetUser, TestUser} from '../shared/actions/user.action';
 import {Wish} from '../shared/models/wish';
-import {EditComponent} from '../edit/edit.component';
+import {EditComponent} from './edit/edit.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({

@@ -10,7 +10,7 @@ import {User} from '../shared/models/user';
 import {UserState} from '../shared/states/user.state';
 import {GetUser} from '../shared/actions/user.action';
 import {Wish} from '../shared/models/wish';
-import {CreateComponent} from '../create/create.component';
+import {CreateComponent} from '../home/create/create.component';
 import {MatDialog} from '@angular/material/dialog';
 import {BuyCancelComponent} from '../buy-cancel/buy-cancel.component';
 
