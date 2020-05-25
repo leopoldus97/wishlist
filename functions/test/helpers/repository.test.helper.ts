@@ -1,6 +1,7 @@
 import { IMock, Mock } from "moq.ts";
 import { WishRepository } from "../../src/wishes/wish.repository";
 import { DataTestHelper } from "./data.test.helper";
+import { UserRepository } from "../../src/users/user.repository";
 
 export class RepositoryTestHelper {
 
@@ -22,5 +23,16 @@ export class RepositoryTestHelper {
             })
             .setup(repo => repo.deleteUserWishes(this.db.uid1))
             .returns(Promise.resolve());
+    }
+
+
+    getUserRepositoryMock(): IMock<UserRepository> {
+        return new Mock<UserRepository>()
+            .setup(repo => repo.deleteUser(this.db.uid1))
+            .returns(Promise.resolve(null))
+            .setup(repo => repo.addGroupIDToGroup(this.db.uid1))
+            .returns(Promise.resolve(null))
+            .setup(repo => repo.createDefaultImageForUser(this.db.uid1))
+            .returns(Promise.resolve(null))
     }
 }

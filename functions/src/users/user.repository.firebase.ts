@@ -3,8 +3,6 @@ import * as admin from 'firebase-admin';
 
 export class UserRepositoryFirebase implements UserRepository{
 
-
-
   db(): FirebaseFirestore.Firestore {
     return admin.firestore();
   }
