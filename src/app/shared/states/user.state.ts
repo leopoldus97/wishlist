@@ -81,7 +81,8 @@ export class UserState {
       currentUser: {
         firstname: 'test',
         email: 'man@man.dk',
-        lastname: 'hello'
+        lastname: 'hello',
+        admin: false
       },
       profilePic: null
     });

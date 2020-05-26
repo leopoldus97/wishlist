@@ -42,9 +42,6 @@ export class AwayComponent implements OnInit {
     /*if (id) {
       this.router.navigateByUrl('login');
     } else*/
-    if (this.watchedMemberID === this.as.getUserID()) {
-      this.router.navigateByUrl('home');
-    }
     this.store.dispatch(new GetWishlist(this.watchedMemberID));
     this.wishlist.subscribe( data => this.w = data);
     this.loggedUser.subscribe(data => this.user = data);

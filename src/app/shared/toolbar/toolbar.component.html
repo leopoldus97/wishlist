@@ -1,10 +1,10 @@
 <mat-toolbar>
   <mat-toolbar-row>
     <span class="text-color" style="margin-right: 5%">Wishlist </span>
-    <button class="button-color" matTooltip="Home Page" matTooltipShowDelay="300" mat-mini-fab aria-label="home" [routerLink]="['/home']" routerLinkActive="router-link-active">
+    <button class="button-color" *ngIf="(auth.userData | async)" matTooltip="Home Page" matTooltipShowDelay="300" mat-mini-fab aria-label="home" [routerLink]="['/home']" routerLinkActive="router-link-active">
       <mat-icon>home</mat-icon>
     </button>
-    <button class="button-color" matTooltip="Group Page" matTooltipShowDelay="300" mat-mini-fab aria-label="tag_faces" style="margin-left: 20px" [routerLink]="['/groups']" >
+    <button class="button-color" *ngIf="(auth.userData | async)" matTooltip="Group Page" matTooltipShowDelay="300" mat-mini-fab aria-label="tag_faces" style="margin-left: 20px" [routerLink]="['/groups']" >
       <mat-icon>tag_faces</mat-icon>
     </button>
     <span class="bar-spacer"></span>
