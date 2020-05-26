@@ -9,7 +9,7 @@ import { CreateComponent } from './create/create.component';
 
 
 @NgModule({
-  declarations: [HomeComponent,EditComponent,CreateComponent],
+  declarations: [HomeComponent, EditComponent, CreateComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

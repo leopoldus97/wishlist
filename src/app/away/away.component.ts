@@ -12,7 +12,7 @@ import {GetUser} from '../shared/actions/user.action';
 import {Wish} from '../shared/models/wish';
 import {CreateComponent} from '../home/create/create.component';
 import {MatDialog} from '@angular/material/dialog';
-import {BuyCancelComponent} from '../buy-cancel/buy-cancel.component';
+import {BuyCancelComponent} from './buy-cancel/buy-cancel.component';
 
 @Component({
   selector: 'app-away',

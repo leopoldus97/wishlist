@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Wish} from '../shared/models/wish';
+import {Wish} from '../../shared/models/wish';
 import {MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder} from '@angular/forms';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -9,7 +9,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
   styleUrls: ['./buy-cancel.component.scss']
 })
 export class BuyCancelComponent implements OnInit {
-
+buyMode: boolean;
 
   constructor(
     public dialogRef: MatDialogRef<BuyCancelComponent>,
@@ -17,6 +17,7 @@ export class BuyCancelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.buyMode = this.data.buyMode;
   }
 
   buyWish(){
