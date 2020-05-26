@@ -14,17 +14,24 @@ h1 {
   font-size: 3em;
 }
 
-button {
+.logInButton {
    width: 15em;
    background-color: #58427C;
    color: #FCF6F5FF;
    font-size: 100%;
  }
+.createAccountButton{
+  width: 10em;
+  margin-top: 4%;
+  background-color: #58427C;
+  color: #FCF6F5FF;
+  font-size: 100%;
+}
 
 mat-card {
-  top: 10em;
+  top: 2em;
   max-width: 30em;
-  height: 20em;
+  height: 22em;
   margin: 2em auto;
   padding: 4em;
   text-align: center;
