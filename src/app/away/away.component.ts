@@ -36,6 +36,7 @@ export class AwayComponent implements OnInit {
   ) { }
 
     ngOnInit(): void {
+    console.log('away');
     this.watchedMemberID = this.route.snapshot.paramMap.get('id');
     this.watchedMember = localStorage.getItem('watchedMember');
     /*if (id) {
