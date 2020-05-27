@@ -1,0 +1,11 @@
+
+<div>
+<h2 id="title">Add member</h2>
+<form [formGroup]="membersForm" (ngSubmit)="addMembers()" id="membersForm">
+  <textarea placeholder="Paste ID of the user you want to add" formControlName="IDs" id="IDs"></textarea>
+  <Button type="submit">Save</Button>
+</form>
+<br><br>
+<Button (click)="cancel()" >Cancel</Button>
+</div>
+

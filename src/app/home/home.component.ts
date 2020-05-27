@@ -8,11 +8,11 @@ import {CreateWishlist, GetWishlist, UpdateWishlist} from '../shared/actions/wis
 import {User} from '../shared/models/user';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
-import {CreateComponent} from './create/create.component';
+import {CreateWishComponent} from './create-wish/create-wish.component';
 import {UserState} from '../shared/states/user.state';
-import {GetUser, TestUser} from '../shared/actions/user.action';
+import {GetUser} from '../shared/actions/user.action';
 import {Wish} from '../shared/models/wish';
-import {EditComponent} from './edit/edit.component';
+import {EditWishComponent} from './edit-wish/edit-wish.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
   }
   addWish() {
     console.log('Test worked');
-    const dialogRef = this.dialog.open(CreateComponent, {
+    const dialogRef = this.dialog.open(CreateWishComponent, {
       height: '400px',
       width: '400px',
       disableClose: true
@@ -59,8 +59,8 @@ export class HomeComponent implements OnInit {
   }
 
   editWish(wishToUpdate: Wish) {
-    console.log('edit works');
-    const dialogRef = this.dialog.open(EditComponent, {
+    console.log('edit-wish-group works');
+    const dialogRef = this.dialog.open(EditWishComponent, {
       data: { wish: wishToUpdate },
       height: '400px',
       width: '400px',

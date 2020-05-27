@@ -48,12 +48,12 @@ describe('WishService',() => {
             .resolves.toEqual(dataTestHelper.wishlist2);
     })
 
-    it('Creating wishlist calls create wishlist on repository once', async() => {
+    it('Creating wishlist calls create-wish-group wishlist on repository once', async() => {
         await wishService.createWishlist(dataTestHelper.uid1);
         wishRepo.verify(instance => instance.createWishlist, Times.Once())
     })
 
-    it('Creating wishlist calls create wishlist with correct uid', async() => {
+    it('Creating wishlist calls create-wish-group wishlist with correct uid', async() => {
         await wishService.createWishlist(dataTestHelper.uid1);
         wishRepo.verify(instance => instance.createWishlist(dataTestHelper.uid1), Times.Once())
     })

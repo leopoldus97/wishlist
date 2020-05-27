@@ -20,7 +20,7 @@ export class ClearUser {
   constructor() { }
 }
 
-export class TestUser {
+export class GetTemporaryUser {
   static readonly type = '[User] Test';
-  constructor() { }
+  constructor(public userID: string) { }
 }

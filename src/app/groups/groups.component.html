@@ -10,10 +10,12 @@
           Description
         </mat-panel-description>
       </mat-expansion-panel-header>
+        <h2><button  (click)="addMembers(group)" id="addMemberButton">+</button> Members:</h2>
 
-      <h2>Members:</h2>
 
-      <div class="member-list">
+
+
+        <div class="member-list">
         <mat-list *ngFor="let member of group.members">
           <mat-list-item (click)="showMember(member)" *ngIf="!(u.uid == member.uid)">
             <!--<img hidden matListAvatar src="../../assets/defaultUserIcon.png" alt="defProfPic">-->

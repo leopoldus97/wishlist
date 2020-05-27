@@ -5,6 +5,7 @@ import {User} from '../models/user';
 import {Member} from '../models/member';
 import {FileService} from './file.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class GroupService {
 
   private currentGroups: Group[];
 
-  constructor(private afs: AngularFirestore, private fs: FileService, private snackBar: MatSnackBar) { }
+  constructor(private afs: AngularFirestore, private fs: FileService, private snackBar: MatSnackBar, private us: UserService) { }
 
   /*getGroupsForUser(userID: string): Observable<Group[]> {
     return this.afs.collection<Group>(this.path, ref => ref.where('memberID', 'array-contains', userID)
@@ -237,5 +238,24 @@ export class GroupService {
     }
     return this.prevStrtAt[this.paginationClickedCount - 1];
   }
+
+  addMemberToGroup(memberToAdd: string, group: Group) {
+    if (group.members.find(member => member.uid === memberToAdd) === undefined){
+      this.us.readUserWithPic(memberToAdd).subscribe(user => {
+        const member = {
+          uid: user.uid,
+          firstname: user.firstname,
+          lastname: user.lastname,
+          nickname: user.nickname,
+          pictureURL: user.pictureURL
+        };
+        group.members.push(member);
+        this.afs.collection<Group>(this.path).doc(group.id).update(group);
+      });
+  }else{
+      console.log('this member is already in the group');
+    }
+  }
+
 }
 

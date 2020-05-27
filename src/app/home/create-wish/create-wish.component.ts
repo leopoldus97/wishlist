@@ -5,10 +5,10 @@ import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  templateUrl: './create-wish.component.html',
+  styleUrls: ['./create-wish.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class CreateWishComponent implements OnInit {
 
   wish: Wish;
   wishForm = this.fb.group({
@@ -18,7 +18,7 @@ export class CreateComponent implements OnInit {
   });
 
   constructor(
-    public dialogRef: MatDialogRef<CreateComponent>,
+    public dialogRef: MatDialogRef<CreateWishComponent>,
     private fb: FormBuilder
   ) { }
 

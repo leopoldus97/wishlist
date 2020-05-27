@@ -7,7 +7,7 @@ import { DataTestHelper } from "../helpers/data.test.helper";
 
 describe('UserService',() => {
 
-    let dataTestHelper: DataTestHelper; 
+    let dataTestHelper: DataTestHelper;
     let repositoryTestHelper: RepositoryTestHelper;
     let userRepo: IMock<UserRepository>;
     let userService: UserService;
@@ -41,7 +41,7 @@ describe('UserService',() => {
         userRepo.verify(repo => repo.deleteUser,Times.Once());
     });
 
-    
+
     it('Delete user calls deleteUser on repository once with correct id',async () => {
         await userService.deleteUser(dataTestHelper.uid1)
         userRepo.verify(repo => repo.deleteUser(dataTestHelper.uid1),Times.Once());
@@ -69,7 +69,7 @@ describe('UserService',() => {
         userRepo.verify(repo => repo.addGroupIDToGroup,Times.Once());
     });
 
-    
+
     it('Adding new id to group calls addGroupIDToGroup on repository once with correct id',async () => {
         await userService.addIDToGroup(dataTestHelper.uid1)
         userRepo.verify(repo => repo.addGroupIDToGroup(dataTestHelper.uid1),Times.Once());
@@ -79,12 +79,12 @@ describe('UserService',() => {
 
     it('Creating Image For undefined uid rejects',async () => {
         await expect(userService.createDefaultImageForUser(undefined as any))
-            .rejects.toEqual('Cannot create image for undefined uid');
+            .rejects.toEqual('Cannot create-wish-group image for undefined uid');
     });
 
     it('Creating Image For null uid rejects',async () => {
         await expect(userService.createDefaultImageForUser(null as any))
-            .rejects.toEqual('Cannot create image for null uid');
+            .rejects.toEqual('Cannot create-wish-group image for null uid');
     });
 
     it('Creating image with correct uid resolves',async () => {
@@ -97,7 +97,7 @@ describe('UserService',() => {
         userRepo.verify(repo => repo.createDefaultImageForUser,Times.Once());
     });
 
-    
+
     it('Creating image calls createDefaultImageForUser on repository once with correct id',async () => {
         await userService.createDefaultImageForUser(dataTestHelper.uid1)
         userRepo.verify(repo => repo.createDefaultImageForUser(dataTestHelper.uid1),Times.Once());

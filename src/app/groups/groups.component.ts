@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Select, Store} from '@ngxs/store';
 import {UserState} from '../shared/states/user.state';
 import {Observable} from 'rxjs';
@@ -7,9 +7,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {FileService} from '../shared/services/file.service';
 import {GroupService} from '../shared/services/group.service';
 import {Router} from '@angular/router';
-import {GetUser} from '../shared/actions/user.action';
+import {GetTemporaryUser, GetUser} from '../shared/actions/user.action';
 import {Group} from '../shared/models/group';
 import {Member} from '../shared/models/member';
+import {MatDialog} from '@angular/material/dialog';
+import {AddMembersComponent} from './add-member/add-members.component';
 
 @Component({
   selector: 'app-groups',
@@ -25,7 +27,8 @@ export class GroupsComponent implements OnInit {
     private fs: FileService,
     private store: Store,
     public gs: GroupService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog,
   ) { this.userID = localStorage.getItem('id'); }
 
   ngOnInit(): void {
@@ -66,4 +69,17 @@ export class GroupsComponent implements OnInit {
     console.log(groupID);
     this.gs.joinGroup(user, groupID);
   }*/
+  addMembers(group: Group) {
+    const dialogRef = this.dialog.open(AddMembersComponent, {
+      height: '300px',
+      width: '300px',
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(memberToAdd => {
+      if (memberToAdd == null) { return; }
+      else {
+        this.gs.addMemberToGroup(memberToAdd, group);
+      }
+    });
+  }
 }

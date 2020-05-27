@@ -19,7 +19,7 @@ describe('ImageCropperComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create-wish-group', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -5,10 +5,10 @@ import {FormBuilder} from '@angular/forms';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 @Component({
   selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  templateUrl: './edit-wish.component.html',
+  styleUrls: ['./edit-wish.component.scss']
 })
-export class EditComponent implements OnInit {
+export class EditWishComponent implements OnInit {
 
   wish: Wish;
   wishForm = this.fb.group({
@@ -18,7 +18,7 @@ export class EditComponent implements OnInit {
   });
 
   constructor(
-    public dialogRef: MatDialogRef<EditComponent>,
+    public dialogRef: MatDialogRef<EditWishComponent>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }

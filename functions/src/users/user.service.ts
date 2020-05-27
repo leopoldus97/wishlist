@@ -27,10 +27,10 @@ export class UserService {
 
   createDefaultImageForUser(uid: string): Promise<any> {
     if(uid === undefined)
-      return Promise.reject('Cannot create image for undefined uid');
+      return Promise.reject('Cannot create-wish-group image for undefined uid');
 
     if(uid === null)
-      return Promise.reject('Cannot create image for null uid');
+      return Promise.reject('Cannot create-wish-group image for null uid');
 
     return this.repo.createDefaultImageForUser(uid);
   }
